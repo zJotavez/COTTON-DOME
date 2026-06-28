@@ -81,7 +81,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
   return (
     <section id="contacto" className="py-24 bg-[#0a0a0a] relative overflow-hidden border-t border-[#1a1a1a]">
       {/* Glow highlight */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#D4AF37]/3 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#C28D35]/3 blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -91,7 +91,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-3"
+            className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
             Contacto & Propostas
           </motion.p>
@@ -129,12 +129,12 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
               <div className="space-y-6 mb-8">
                 {/* Phone */}
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#FFD700]/25 flex items-center justify-center text-[#FFD700] flex-shrink-0">
+                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#E2AF55]/25 flex items-center justify-center text-[#E2AF55] flex-shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="block font-display text-[10px] uppercase tracking-wider text-gray-500 font-bold">Telefone</span>
-                    <a href={phoneHref} className="block text-sm text-white hover:text-[#FFD700] font-mono transition-colors mt-0.5">
+                    <a href={phoneHref} className="block text-sm text-white hover:text-[#E2AF55] font-mono transition-colors mt-0.5">
                       {CONTACT_INFO.phone}
                     </a>
                     <span className="text-[10px] text-gray-500 block mt-0.5">Chamada para a rede móvel nacional</span>
@@ -143,12 +143,12 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
 
                 {/* Email */}
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#FFD700]/25 flex items-center justify-center text-[#FFD700] flex-shrink-0">
+                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#E2AF55]/25 flex items-center justify-center text-[#E2AF55] flex-shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="block font-display text-[10px] uppercase tracking-wider text-gray-500 font-bold">E-mail</span>
-                    <a href={emailHref} className="block text-sm text-white hover:text-[#FFD700] font-sans transition-colors mt-0.5">
+                    <a href={emailHref} className="block text-sm text-white hover:text-[#E2AF55] font-sans transition-colors mt-0.5">
                       {CONTACT_INFO.email}
                     </a>
                   </div>
@@ -156,7 +156,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
 
                 {/* Map location */}
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#FFD700]/25 flex items-center justify-center text-[#FFD700] flex-shrink-0">
+                  <div className="w-10 h-10 rounded bg-[#1A1A1A] border border-[#E2AF55]/25 flex items-center justify-center text-[#E2AF55] flex-shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -172,7 +172,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
 
             {/* Corporate Hours disclaimer */}
             <div className="border-t border-[#222222] pt-6">
-              <span className="block font-mono text-[9px] text-[#FFD700] uppercase tracking-widest mb-1">
+              <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1">
                 DISPONIBILIDADE
               </span>
               <span className="block text-xs text-[#D9D9D9] font-sans leading-relaxed">
@@ -217,7 +217,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#FFD700] focus:shadow-[0_0_10px_rgba(255,215,0,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
+                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#E2AF55] focus:shadow-[0_0_10px_rgba(226,175,85,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
                         placeholder="Ex: João Silva"
                       />
                     </div>
@@ -233,7 +233,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#FFD700] focus:shadow-[0_0_10px_rgba(255,215,0,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
+                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#E2AF55] focus:shadow-[0_0_10px_rgba(226,175,85,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
                         placeholder="Ex: +351 912 345 678"
                       />
                     </div>
@@ -251,7 +251,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#FFD700] focus:shadow-[0_0_10px_rgba(255,215,0,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
+                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#E2AF55] focus:shadow-[0_0_10px_rgba(226,175,85,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all"
                         placeholder="Ex: joao.silva@empresa.com"
                       />
                     </div>
@@ -265,7 +265,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                         name="service"
                         value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#FFD700] focus:shadow-[0_0_10px_rgba(255,215,0,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all appearance-none"
+                        className="w-full bg-[#161616] border border-[#222222] focus:border-[#E2AF55] focus:shadow-[0_0_10px_rgba(226,175,85,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all appearance-none"
                       >
                         <option value="">-- Selecione uma solução --</option>
                         {SOLUTIONS.map((sol) => (
@@ -287,7 +287,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full bg-[#161616] border border-[#222222] focus:border-[#FFD700] focus:shadow-[0_0_10px_rgba(255,215,0,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all resize-none"
+                      className="w-full bg-[#161616] border border-[#222222] focus:border-[#E2AF55] focus:shadow-[0_0_10px_rgba(226,175,85,0.15)] rounded px-4 py-3 text-xs font-sans text-white focus:outline-none transition-all resize-none"
                       placeholder="Descreva as suas necessidades de segurança, dimensão do espaço ou dúvidas técnicas..."
                     ></textarea>
                   </div>
@@ -331,7 +331,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                   exit={{ opacity: 0 }}
                   className="text-center py-12 flex flex-col items-center justify-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] mb-6">
+                  <div className="w-16 h-16 rounded-full bg-[#C28D35]/10 border border-[#C28D35] flex items-center justify-center text-[#C28D35] mb-6">
                     <Check className="w-8 h-8" />
                   </div>
                   <h4 className="font-display font-bold text-2xl text-white mb-3">
@@ -342,7 +342,7 @@ export function ContactForm({ selectedService, onClearService }: ContactFormProp
                   </p>
                   <button
                     onClick={() => setSubmitSuccess(false)}
-                    className="border border-[#222] hover:border-[#D4AF37]/50 bg-[#161616] hover:bg-black text-xs text-[#CFCFCF] hover:text-[#D4AF37] px-6 py-3 rounded font-display font-semibold uppercase tracking-wider transition-colors"
+                    className="border border-[#222] hover:border-[#C28D35]/50 bg-[#161616] hover:bg-black text-xs text-[#CFCFCF] hover:text-[#C28D35] px-6 py-3 rounded font-display font-semibold uppercase tracking-wider transition-colors"
                   >
                     Enviar Outro Pedido
                   </button>

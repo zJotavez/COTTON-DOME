@@ -17,8 +17,8 @@ export function Environments() {
       <div className="absolute inset-0 tech-grid pointer-events-none opacity-50"></div>
 
       {/* Decorative ambient gold points */}
-      <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full bg-[#D4AF37]/5 blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-[#F5C542]/3 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full bg-[#C28D35]/5 blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-[#D09B42]/3 blur-[120px] pointer-events-none"></div>
 
       {/* Fade Overlays on sides for premium marquee blending */}
       <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none"></div>
@@ -31,7 +31,7 @@ export function Environments() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-3"
+            className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
             Áreas de Atuação
           </motion.p>
@@ -63,7 +63,7 @@ export function Environments() {
             {row1Items.map((env, idx) => (
               <div
                 key={`${env.id}-${idx}`}
-                className="w-[280px] sm:w-[340px] h-60 rounded-xl overflow-hidden border border-[#222222] hover:border-[#D4AF37]/40 transition-all duration-500 relative flex-shrink-0 group"
+                className="w-[280px] sm:w-[340px] h-60 rounded-xl overflow-hidden border border-[#222222] hover:border-[#C28D35]/40 transition-all duration-500 relative flex-shrink-0 group"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 bg-black/55 z-10 group-hover:bg-black/45 transition-colors duration-500"></div>
@@ -76,11 +76,11 @@ export function Environments() {
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
-                  <div className="w-9 h-9 rounded-lg bg-[#111111]/95 border border-white/10 group-hover:border-[#D4AF37]/50 flex items-center justify-center transition-all duration-300">
-                    <LucideIcon name={env.iconName} className="w-4 h-4 text-[#D4AF37] group-hover:rotate-6 transition-transform" />
+                  <div className="w-9 h-9 rounded-lg bg-[#111111]/95 border border-white/10 group-hover:border-[#C28D35]/50 flex items-center justify-center transition-all duration-300">
+                    <LucideIcon name={env.iconName} className="w-4 h-4 text-[#C28D35] group-hover:rotate-6 transition-transform" />
                   </div>
                   <div>
-                    <h3 className="font-display font-extrabold text-base text-white mb-1 group-hover:text-[#D4AF37] transition-colors">
+                    <h3 className="font-display font-extrabold text-base text-white mb-1 group-hover:text-[#C28D35] transition-colors">
                       {env.name}
                     </h3>
                     <p className="text-xs text-[#CFCFCF]/90 font-sans leading-relaxed">
@@ -99,7 +99,7 @@ export function Environments() {
             {row2Items.map((env, idx) => (
               <div
                 key={`${env.id}-${idx}`}
-                className="w-[280px] sm:w-[340px] h-60 rounded-xl overflow-hidden border border-[#222222] hover:border-[#D4AF37]/40 transition-all duration-500 relative flex-shrink-0 group"
+                className="w-[280px] sm:w-[340px] h-60 rounded-xl overflow-hidden border border-[#222222] hover:border-[#C28D35]/40 transition-all duration-500 relative flex-shrink-0 group"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 bg-black/55 z-10 group-hover:bg-black/45 transition-colors duration-500"></div>
@@ -112,11 +112,11 @@ export function Environments() {
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
-                  <div className="w-9 h-9 rounded-lg bg-[#111111]/95 border border-white/10 group-hover:border-[#D4AF37]/50 flex items-center justify-center transition-all duration-300">
-                    <LucideIcon name={env.iconName} className="w-4 h-4 text-[#D4AF37] group-hover:rotate-6 transition-transform" />
+                  <div className="w-9 h-9 rounded-lg bg-[#111111]/95 border border-white/10 group-hover:border-[#C28D35]/50 flex items-center justify-center transition-all duration-300">
+                    <LucideIcon name={env.iconName} className="w-4 h-4 text-[#C28D35] group-hover:rotate-6 transition-transform" />
                   </div>
                   <div>
-                    <h3 className="font-display font-extrabold text-base text-white mb-1 group-hover:text-[#D4AF37] transition-colors">
+                    <h3 className="font-display font-extrabold text-base text-white mb-1 group-hover:text-[#C28D35] transition-colors">
                       {env.name}
                     </h3>
                     <p className="text-xs text-[#CFCFCF]/90 font-sans leading-relaxed">

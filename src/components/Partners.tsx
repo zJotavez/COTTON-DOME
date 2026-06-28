@@ -10,17 +10,17 @@ export function Partners() {
       <div className="absolute inset-y-0 right-0 w-1/3 opacity-[0.02] tech-grid pointer-events-none"></div>
 
       {/* Top infinite marquee banner */}
-      <div className="w-full bg-black/60 border-y border-[#D4AF37]/15 py-3.5 mb-16 overflow-hidden relative z-10">
+      <div className="w-full bg-black/60 border-y border-[#C28D35]/15 py-3.5 mb-16 overflow-hidden relative z-10">
         <div className="animate-marquee-ltr flex items-center gap-12 whitespace-nowrap">
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#D4AF37]">✦ GARANTIA DE QUALIDADE MÁXIMA</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#C28D35]">✦ GARANTIA DE QUALIDADE MÁXIMA</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ FORNECEDORES DE REFERÊNCIA GLOBAL</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#D4AF37]">✦ EQUIPAMENTOS 100% HOMOLOGADOS</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#C28D35]">✦ EQUIPAMENTOS 100% HOMOLOGADOS</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ RIGOR TÉCNICO E DE ENGENHARIA</span>
           
           {/* Duplicates */}
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#D4AF37]">✦ GARANTIA DE QUALIDADE MÁXIMA</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#C28D35]">✦ GARANTIA DE QUALIDADE MÁXIMA</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ FORNECEDORES DE REFERÊNCIA GLOBAL</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#D4AF37]">✦ EQUIPAMENTOS 100% HOMOLOGADOS</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#C28D35]">✦ EQUIPAMENTOS 100% HOMOLOGADOS</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ RIGOR TÉCNICO E DE ENGENHARIA</span>
         </div>
       </div>
@@ -33,7 +33,7 @@ export function Partners() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-3"
+            className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
             Credibilidade & Parcerias
           </motion.p>
@@ -73,7 +73,7 @@ export function Partners() {
                     <span className="font-mono text-[9px] uppercase tracking-wider text-gray-500 mb-1">
                       FORNECEDOR DE REFERÊNCIA
                     </span>
-                    <h3 className="font-display font-bold text-xl text-white group-hover:text-[#FFD700] transition-colors duration-300">
+                    <h3 className="font-display font-bold text-xl text-white group-hover:text-[#E2AF55] transition-colors duration-300">
                       {partner.name}
                     </h3>
                   </div>
@@ -81,7 +81,7 @@ export function Partners() {
                     href={partner.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded bg-[#1A1A1A] hover:bg-[#FFD700] hover:text-black text-gray-400 border border-white/5 transition-colors duration-300 flex items-center justify-center"
+                    className="p-2.5 rounded bg-[#1A1A1A] hover:bg-[#E2AF55] hover:text-black text-gray-400 border border-white/5 transition-colors duration-300 flex items-center justify-center"
                     aria-label={`Visitar o site da ${partner.name}`}
                   >
                     <ExternalLink className="w-4 h-4" />
@@ -101,7 +101,7 @@ export function Partners() {
                   <div className="space-y-2">
                     {partner.focus.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700]"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#E2AF55]"></div>
                         <span className="text-xs text-[#D9D9D9] font-sans">{item}</span>
                       </div>
                     ))}
@@ -111,7 +111,7 @@ export function Partners() {
 
               {/* Status footer inside card */}
               <div className="flex items-center gap-2 text-xs text-gray-500 bg-black/45 px-3 py-2 rounded border border-white/5 font-mono">
-                <Check className="w-3.5 h-3.5 text-[#FFD700]" />
+                <Check className="w-3.5 h-3.5 text-[#E2AF55]" />
                 <span>Integração de equipamentos originais certificados</span>
               </div>
             </motion.div>
@@ -131,7 +131,7 @@ export function Partners() {
                     <span className="font-mono text-[8px] uppercase tracking-wider text-gray-500 mb-0.5">
                       FORNECEDOR DE REFERÊNCIA
                     </span>
-                    <h3 className="font-display font-bold text-sm text-white group-hover:text-[#FFD700] transition-colors leading-tight">
+                    <h3 className="font-display font-bold text-sm text-white group-hover:text-[#E2AF55] transition-colors leading-tight">
                       {partner.name}
                     </h3>
                   </div>
@@ -157,7 +157,7 @@ export function Partners() {
                   <div className="space-y-1.5">
                     {partner.focus.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex items-center gap-1.5">
-                        <div className="w-1 h-1 rounded-full bg-[#FFD700] flex-shrink-0"></div>
+                        <div className="w-1 h-1 rounded-full bg-[#E2AF55] flex-shrink-0"></div>
                         <span className="text-[10px] text-[#D9D9D9] font-sans truncate">{item}</span>
                       </div>
                     ))}
@@ -165,7 +165,7 @@ export function Partners() {
                 </div>
 
                 <div className="flex items-center gap-1.5 text-[9px] text-gray-500 bg-black/45 px-2 py-1.5 rounded border border-white/5 font-mono">
-                  <Check className="w-3 h-3 text-[#FFD700] flex-shrink-0" />
+                  <Check className="w-3 h-3 text-[#E2AF55] flex-shrink-0" />
                   <span className="truncate">Equipamentos originais certificados</span>
                 </div>
               </div>
@@ -181,18 +181,18 @@ export function Partners() {
       </div>
 
       {/* Bottom infinite marquee banner */}
-      <div className="w-full bg-black/60 border-y border-[#FFD700]/15 py-3.5 mt-16 overflow-hidden relative z-10">
+      <div className="w-full bg-black/60 border-y border-[#E2AF55]/15 py-3.5 mt-16 overflow-hidden relative z-10">
         <div className="animate-marquee-rtl flex items-center gap-12 whitespace-nowrap">
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ ASSISTÊNCIA TÉCNICA DEDICADA</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#FFD700]">✦ COMPROMISSO DE RIGOR E FIABILIDADE</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#E2AF55]">✦ COMPROMISSO DE RIGOR E FIABILIDADE</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ INSTALAÇÕES SEGURAS E DURADOURAS</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#FFD700]">✦ SATISFAÇÃO TOTAL DO CLIENTE</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#E2AF55]">✦ SATISFAÇÃO TOTAL DO CLIENTE</span>
           
           {/* Duplicates */}
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ ASSISTÊNCIA TÉCNICA DEDICADA</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#FFD700]">✦ COMPROMISSO DE RIGOR E FIABILIDADE</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#E2AF55]">✦ COMPROMISSO DE RIGOR E FIABILIDADE</span>
           <span className="text-[9px] font-display font-bold uppercase tracking-widest text-white">✦ INSTALAÇÕES SEGURAS E DURADOURAS</span>
-          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#FFD700]">✦ SATISFAÇÃO TOTAL DO CLIENTE</span>
+          <span className="text-[9px] font-display font-bold uppercase tracking-widest text-[#E2AF55]">✦ SATISFAÇÃO TOTAL DO CLIENTE</span>
         </div>
       </div>
     </section>

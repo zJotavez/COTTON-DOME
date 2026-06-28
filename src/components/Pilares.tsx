@@ -8,21 +8,21 @@ export function Pilares() {
       title: "Qualidade",
       description:
         "Trabalhamos com equipamentos selecionados e soluções pensadas para garantir eficiência, durabilidade e segurança.",
-      icon: <Award className="w-6 h-6 text-[#D4AF37]" />,
+      icon: <Award className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80",
     },
     {
       title: "Confiança",
       description:
         "Desenvolvemos projetos técnicos adaptados à realidade de cada cliente, com foco em proteção e tranquilidade.",
-      icon: <ShieldCheck className="w-6 h-6 text-[#D4AF37]" />,
+      icon: <ShieldCheck className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80",
     },
     {
       title: "Profissionalismo",
       description:
-        "Da análise inicial à instalação final, atuamos com rigor técnico, organização e compromisso.",
-      icon: <UserCheck className="w-6 h-6 text-[#D4AF37]" />,
+        "Da análise inicial à instalação final, atuamos com rigor técnico, organization e compromisso.",
+      icon: <UserCheck className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80",
     },
   ];
@@ -52,11 +52,11 @@ export function Pilares() {
 
               {/* Inner content overlay */}
               <div className="relative z-10">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 mb-3 sm:mb-5 border-l-2 border-t-2 border-[#FFD700] flex items-center justify-center rounded-none bg-black/40">
-                  {React.cloneElement(pillar.icon, { className: "w-5 h-5 sm:w-6 sm:h-6 text-[#FFD700]" })}
+                <div className="w-8 h-8 sm:w-10 sm:h-10 mb-3 sm:mb-5 border-l-2 border-t-2 border-[#E2AF55] flex items-center justify-center rounded-none bg-black/40">
+                  {React.cloneElement(pillar.icon, { className: "w-5 h-5 sm:w-6 sm:h-6 text-[#E2AF55]" })}
                 </div>
                 <div>
-                  <h3 className="text-white font-display font-bold text-xs sm:text-sm uppercase tracking-wider mb-1.5 sm:mb-3 group-hover:text-[#FFD700] transition-colors leading-tight">
+                  <h3 className="text-white font-display font-bold text-xs sm:text-sm uppercase tracking-wider mb-1.5 sm:mb-3 group-hover:text-[#E2AF55] transition-colors leading-tight">
                     {pillar.title}
                   </h3>
                   <p className="text-[10px] sm:text-sm text-[#D9D9D9]/80 leading-normal sm:leading-relaxed font-sans">
@@ -70,39 +70,39 @@ export function Pilares() {
       </div>
 
       {/* Infinite Marquee Phrase Row */}
-      <div className="w-full bg-[#111111]/40 border-t border-[#FFD700]/15 py-4 overflow-hidden relative">
+      <div className="w-full bg-[#111111]/40 border-t border-[#E2AF55]/15 py-4 overflow-hidden relative">
         <div className="animate-marquee-ltr flex items-center gap-12 whitespace-nowrap">
           {/* First set of elements */}
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ QUALIDADE GARANTIDA
           </span>
           <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
             ✦ RIGOR TÉCNICO CERTIFICADO
           </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ SOLUÇÕES INTELIGENTES DE SEGURANÇA
           </span>
           <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
             ✦ ASSISTÊNCIA TÉCNICA LOCAL DEDICADA
           </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ PROTEÇÃO PERMANENTE 24/7
           </span>
 
           {/* Duplicated set for infinite loop effect */}
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ QUALIDADE GARANTIDA
           </span>
           <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
             ✦ RIGOR TÉCNICO CERTIFICADO
           </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ SOLUÇÕES INTELIGENTES DE SEGURANÇA
           </span>
           <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
             ✦ ASSISTÊNCIA TÉCNICA LOCAL DEDICADA
           </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#D4AF37] flex items-center gap-2">
+          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
             ✦ PROTEÇÃO PERMANENTE 24/7
           </span>
         </div>

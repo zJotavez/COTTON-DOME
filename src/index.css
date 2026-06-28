@@ -14,10 +14,10 @@
   --color-dark-border: #222222;
   --color-dark-tech: #1A1A1A;
   
-  --color-gold-main: #D4AF37;       /* Dourado ouro principal */
-  --color-gold-bright: #FFD700;     /* Dourado ouro vivo */
-  --color-gold-metallic: #C9A227;   /* Dourado metálico elegante */
-  --color-gold-hover: #F5C542;      /* Dourado suave para hover */
+  --color-gold-main: #C28D35;       /* Novo dourado principal */
+  --color-gold-bright: #E2AF55;     /* Novo dourado vivo */
+  --color-gold-metallic: #A37125;   /* Novo dourado metálico */
+  --color-gold-hover: #D09B42;      /* Novo dourado para hover */
   
   --color-text-white: #FFFFFF;
   --color-text-light: #D9D9D9;      /* Cinza claro para textos */
@@ -27,16 +27,16 @@
 @layer utilities {
   /* Premium Gold Button Gradient */
   .btn-gold-premium {
-    background: linear-gradient(135deg, #D4AF37, #FFD700, #C9A227);
+    background: linear-gradient(135deg, #C28D35, #E2AF55, #A37125);
     color: #050505;
-    border: 1px solid #FFD700;
+    border: 1px solid #E2AF55;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 4px 15px rgba(194, 141, 53, 0.15);
   }
   .btn-gold-premium:hover {
     opacity: 0.95;
     transform: translateY(-1px);
-    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.35);
+    box-shadow: 0 6px 25px rgba(226, 175, 85, 0.35);
     border-color: #FFFFFF;
     color: #000000;
   }
@@ -44,15 +44,15 @@
   /* Outline Gold Button */
   .btn-gold-outline {
     background: transparent;
-    color: #D4AF37;
-    border: 1px solid #D4AF37;
+    color: #C28D35;
+    border: 1px solid #C28D35;
     transition: all 0.3s ease;
   }
   .btn-gold-outline:hover {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: #FFD700;
-    color: #FFD700;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    background: rgba(194, 141, 53, 0.1);
+    border-color: #E2AF55;
+    color: #E2AF55;
+    box-shadow: 0 0 15px rgba(194, 141, 53, 0.15);
   }
 
   /* Luxury Card Glow Effect */
@@ -62,10 +62,10 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .card-luxury:hover {
-    border-color: #D4AF37;
+    border-color: #C28D35;
     box-shadow: 
-      0 0 25px rgba(212, 175, 55, 0.08),
-      0 0 50px rgba(255, 215, 0, 0.03);
+      0 0 25px rgba(194, 141, 53, 0.08),
+      0 0 50px rgba(226, 175, 85, 0.03);
     transform: translateY(-2px);
   }
 
@@ -73,38 +73,38 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .gold-glow-hover:hover {
-    box-shadow: 0 0 25px -5px rgba(255, 215, 0, 0.2);
-    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 25px -5px rgba(226, 175, 85, 0.2);
+    border-color: rgba(226, 175, 85, 0.4);
   }
 
   /* True Gold Text Gradient */
   .gold-text-gradient {
-    background: linear-gradient(135deg, #FFFFFF 30%, #FFD700 70%, #C9A227 100%);
+    background: linear-gradient(135deg, #FFFFFF 30%, #E2AF55 70%, #A37125 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .gold-metallic-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #C9A227 100%);
+    background: linear-gradient(135deg, #C28D35 0%, #E2AF55 50%, #A37125 100%);
   }
 
   /* Technology Grid Grid Mask */
   .tech-grid {
     background-size: 50px 50px;
     background-image: 
-      linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgba(194, 141, 53, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(194, 141, 53, 0.04) 1px, transparent 1px);
   }
 
   /* 3D Gold Extrusion text shadow */
   .text-3d-gold {
     text-shadow: 
-      0 1px 0 #C9A227,
-      0 2px 0 #A8831E,
-      0 3px 0 #876517,
-      0 4px 0 #664B10,
+      0 1px 0 #A37125,
+      0 2px 0 #855C1D,
+      0 3px 0 #674716,
+      0 4px 0 #49320F,
       0 10px 20px rgba(0, 0, 0, 0.85),
-      0 15px 35px rgba(255, 215, 0, 0.25);
+      0 15px 35px rgba(226, 175, 85, 0.25);
   }
 }
 
@@ -121,7 +121,7 @@
   border: 2px solid #050505;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #C28D35;
 }
 
 /* Smooth Scrolling */
@@ -147,8 +147,8 @@ html {
 
 /* Pulsing Gold Glow */
 @keyframes gold-pulse {
-  0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.15); }
-  50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.45); }
+  0%, 100% { box-shadow: 0 0 15px rgba(194, 141, 53, 0.15); }
+  50% { box-shadow: 0 0 35px rgba(226, 175, 85, 0.45); }
 }
 
 .gold-pulse-glow {

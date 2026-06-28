@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
+import { ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 import { CONTACT_INFO } from "../data";
 
 interface FooterProps {
@@ -41,7 +41,7 @@ export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#050505] border-t border-[#1e1e1e] pt-16 pb-8 relative overflow-hidden">
       {/* Subtle bottom decorative line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C28D35]/30 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -55,14 +55,14 @@ export function Footer({ onNavigate }: FooterProps) {
               onClick={(e) => handleLinkClick(e, "#home")}
               className="flex items-center gap-2 mb-6 group"
             >
-              <div className="w-8 h-8 rounded bg-gradient-to-br from-[#111] to-[#1A1A1A] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37]">
-                <Shield className="w-4 h-4" />
+              <div className="w-8 h-8 rounded bg-gradient-to-br from-[#111] to-[#1A1A1A] border border-[#C28D35]/30 flex items-center justify-center p-0.5 overflow-hidden">
+                <img src="/images/logo.png" alt="Cotton Dome Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display text-sm tracking-widest text-white font-bold leading-none">
                   COTTON DOME
                 </span>
-                <span className="text-[9px] font-sans font-semibold tracking-wider text-[#D4AF37] leading-none mt-1">
+                <span className="text-[9px] font-sans font-semibold tracking-wider text-[#C28D35] leading-none mt-1">
                   SECURITY SOLUTIONS LDA
                 </span>
               </div>
@@ -70,7 +70,7 @@ export function Footer({ onNavigate }: FooterProps) {
             <p className="text-xs sm:text-sm text-gray-400 font-sans leading-relaxed mb-6">
               Desenvolvimento e integração de soluções inteligentes premium de segurança eletrónica, automação e infraestrutura de telecomunicações para clientes corporativos e residenciais em Portugal.
             </p>
-            <span className="text-xs font-mono text-[#D4AF37]">
+            <span className="text-xs font-mono text-[#C28D35]">
               Soluções inteligentes para a sua segurança
             </span>
           </div>
@@ -86,9 +86,9 @@ export function Footer({ onNavigate }: FooterProps) {
                   <a
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className="group flex items-center gap-1 text-xs text-gray-400 hover:text-[#D4AF37] transition-colors"
+                    className="group flex items-center gap-1 text-xs text-gray-400 hover:text-[#C28D35] transition-colors"
                   >
-                    <ChevronRight className="w-3 h-3 text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
+                    <ChevronRight className="w-3 h-3 text-[#C28D35] opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
                     <span>{link.label}</span>
                   </a>
                 </li>
@@ -107,9 +107,9 @@ export function Footer({ onNavigate }: FooterProps) {
                   <a
                     href={srv.href}
                     onClick={(e) => handleLinkClick(e, srv.href)}
-                    className="group flex items-center gap-1 text-xs text-gray-400 hover:text-[#D4AF37] transition-colors"
+                    className="group flex items-center gap-1 text-xs text-gray-400 hover:text-[#C28D35] transition-colors"
                   >
-                    <ChevronRight className="w-3 h-3 text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
+                    <ChevronRight className="w-3 h-3 text-[#C28D35] opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
                     <span>{srv.label}</span>
                   </a>
                 </li>
@@ -124,7 +124,7 @@ export function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                <Phone className="w-4 h-4 text-[#C28D35] mt-0.5 flex-shrink-0" />
                 <a 
                   href={phoneHref} 
                   onClick={(e) => {
@@ -136,7 +136,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-[#C28D35] mt-0.5 flex-shrink-0" />
                 <a 
                   href={emailHref} 
                   onClick={(e) => {
@@ -148,7 +148,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-[#C28D35] mt-0.5 flex-shrink-0" />
                 <span className="text-xs text-gray-400 leading-relaxed">
                   {CONTACT_INFO.address}
                 </span>
@@ -159,16 +159,16 @@ export function Footer({ onNavigate }: FooterProps) {
         </div>
 
         {/* Bottom trust bar matching the design theme */}
-        <div className="border-t border-[#D4AF37]/20 py-6 mt-8 mb-4 flex flex-col md:flex-row items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-[#CFCFCF]/50 gap-4">
+        <div className="border-t border-[#C28D35]/20 py-6 mt-8 mb-4 flex flex-col md:flex-row items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-[#CFCFCF]/50 gap-4">
           <div className="flex flex-wrap gap-6 md:gap-12 justify-center md:justify-start">
             <div className="flex items-center gap-3">
-              <span className="text-[#D4AF37]">01.</span> Qualidade Superior
+              <span className="text-[#C28D35]">01.</span> Qualidade Superior
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[#D4AF37]">02.</span> Confiança Absoluta
+              <span className="text-[#C28D35]">02.</span> Confiança Absoluta
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[#D4AF37]">03.</span> Rigor Técnico
+              <span className="text-[#C28D35]">03.</span> Rigor Técnico
             </div>
           </div>
           <div className="flex items-center gap-8">
@@ -182,8 +182,8 @@ export function Footer({ onNavigate }: FooterProps) {
             © {currentYear} Cotton Dome LDA. Todos os direitos reservados.
           </p>
           <div className="flex gap-6 text-[10px] text-gray-500 font-sans">
-            <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Termos de Utilização</span>
-            <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Política de Privacidade</span>
+            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">Termos de Utilização</span>
+            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">Política de Privacidade</span>
           </div>
         </div>
 

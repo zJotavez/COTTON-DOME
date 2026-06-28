@@ -12,8 +12,8 @@ export function Solutions({ onNavigate }: SolutionsProps) {
   return (
     <section id="solucoes" className="py-24 bg-[#0a0a0a] relative overflow-hidden">
       {/* Decorative Golden Ambient Glows */}
-      <div className="absolute top-1/3 right-0 w-80 h-80 rounded-full bg-[#D4AF37]/5 blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full bg-[#F5C542]/3 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/3 right-0 w-80 h-80 rounded-full bg-[#C28D35]/5 blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full bg-[#D09B42]/3 blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -23,7 +23,7 @@ export function Solutions({ onNavigate }: SolutionsProps) {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-3"
+            className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
             Serviços Especializados
           </motion.p>
@@ -68,13 +68,13 @@ export function Solutions({ onNavigate }: SolutionsProps) {
               <div className="relative z-10">
                 {/* Header: Icon and Category badge */}
                 <div className="flex justify-between items-start mb-2 sm:mb-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-[#1A1A1A] border border-[#FFD700]/25 group-hover:border-[#FFD700] flex items-center justify-center text-[#FFD700] group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-[#1A1A1A] border border-[#E2AF55]/25 group-hover:border-[#E2AF55] flex items-center justify-center text-[#E2AF55] group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                     <LucideIcon name={sol.iconName} className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
 
                 {/* Service Title */}
-                <h3 className="font-display font-bold text-xs sm:text-base text-white tracking-wide mb-1 sm:mb-2 group-hover:text-[#FFD700] transition-colors leading-tight">
+                <h3 className="font-display font-bold text-xs sm:text-base text-white tracking-wide mb-1 sm:mb-2 group-hover:text-[#E2AF55] transition-colors leading-tight">
                   {sol.title.split(" / ")[0]}
                 </h3>
 
@@ -85,7 +85,7 @@ export function Solutions({ onNavigate }: SolutionsProps) {
               </div>
 
               {/* Action Button: Saber mais */}
-              <div className="relative z-10 flex items-center gap-1.5 text-[9px] sm:text-[10px] font-display font-bold uppercase tracking-wider text-[#B8B8B8] group-hover:text-[#FFD700] transition-colors mt-2 sm:mt-4">
+              <div className="relative z-10 flex items-center gap-1.5 text-[9px] sm:text-[10px] font-display font-bold uppercase tracking-wider text-[#B8B8B8] group-hover:text-[#E2AF55] transition-colors mt-2 sm:mt-4">
                 <span>Saber mais</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>

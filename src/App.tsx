@@ -71,7 +71,7 @@ export default function App() {
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${cleanNumber}&text=${encodeURIComponent("Olá Cotton Dome, gostaria de obter mais informações.")}`;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#CFCFCF] font-sans antialiased selection:bg-[#D4AF37] selection:text-[#050505]">
+    <div className="min-h-screen bg-[#050505] text-[#CFCFCF] font-sans antialiased selection:bg-[#C28D35] selection:text-[#050505]">
       {/* Dynamic Header */}
       <Header
         onQuoteClick={() => {

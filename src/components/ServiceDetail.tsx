@@ -32,7 +32,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
   if (!service) {
     return (
       <main className="min-h-screen bg-[#050505] text-[#D9D9D9] flex flex-col justify-center items-center p-6 text-center">
-        <div className="w-16 h-16 rounded-full bg-[#FFD700]/10 border border-[#FFD700] flex items-center justify-center text-[#FFD700] mb-6">
+        <div className="w-16 h-16 rounded-full bg-[#E2AF55]/10 border border-[#E2AF55] flex items-center justify-center text-[#E2AF55] mb-6">
           <HelpCircle className="w-8 h-8" />
         </div>
         <h1 className="font-display font-bold text-2xl text-white mb-4">Serviço não encontrado</h1>
@@ -90,7 +90,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-12 h-12 rounded-lg bg-[#111111]/90 border border-[#FFD700]/45 flex items-center justify-center text-[#FFD700] mx-auto mb-6 shadow-lg shadow-[#FFD700]/10"
+            className="w-12 h-12 rounded-lg bg-[#111111]/90 border border-[#E2AF55]/45 flex items-center justify-center text-[#E2AF55] mx-auto mb-6 shadow-lg shadow-[#E2AF55]/10"
           >
             <LucideIcon name={service.iconName} className="w-6 h-6" />
           </motion.div>
@@ -108,7 +108,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-mono text-xs sm:text-sm text-[#FFD700] uppercase tracking-widest max-w-3xl mx-auto mb-8 font-semibold"
+            className="font-mono text-xs sm:text-sm text-[#E2AF55] uppercase tracking-widest max-w-3xl mx-auto mb-8 font-semibold"
           >
             {service.slogan}
           </motion.p>
@@ -134,7 +134,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
 
       {/* 2. DESCRIÇÃO COMPLETA & BENEFÍCIOS */}
       <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full bg-[#FFD700]/6 blur-[120px] gold-ambient-light pointer-events-none"></div>
+        <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full bg-[#E2AF55]/6 blur-[120px] gold-ambient-light pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -153,13 +153,13 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
 
             {/* Right side: Benefits list */}
             <div className="lg:col-span-5 card-luxury p-8 rounded-xl relative group">
-              <h2 className="text-base sm:text-lg font-display font-bold text-[#FFD700] tracking-wider uppercase mb-6">
+              <h2 className="text-base sm:text-lg font-display font-bold text-[#E2AF55] tracking-wider uppercase mb-6">
                 Principais Benefícios
               </h2>
               <ul className="space-y-4">
                 {service.benefits.map((benefit, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-[#E2AF55] mt-0.5 flex-shrink-0" />
                     <span className="text-xs sm:text-sm text-[#D9D9D9] font-sans capitalize leading-tight">
                       {benefit}
                     </span>
@@ -203,10 +203,10 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
                 className="card-luxury p-6 rounded-xl group"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded bg-[#1A1A1A] border border-[#FFD700]/20 flex items-center justify-center text-[#FFD700] group-hover:border-[#FFD700]/50 transition-colors">
+                  <div className="w-8 h-8 rounded bg-[#1A1A1A] border border-[#E2AF55]/20 flex items-center justify-center text-[#E2AF55] group-hover:border-[#E2AF55]/50 transition-colors">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
-                  <h3 className="font-display font-bold text-sm uppercase text-white tracking-wide group-hover:text-[#FFD700] transition-colors">
+                  <h3 className="font-display font-bold text-sm uppercase text-white tracking-wide group-hover:text-[#E2AF55] transition-colors">
                     {loc.name}
                   </h3>
                 </div>
@@ -270,7 +270,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
                     key={idx} 
                     className="relative w-[280px] h-[180px] rounded-xl overflow-hidden card-luxury group flex-shrink-0"
                   >
-                    <div className="absolute inset-2 border border-[#FFD700]/10 rounded-lg z-20 pointer-events-none"></div>
+                    <div className="absolute inset-2 border border-[#E2AF55]/10 rounded-lg z-20 pointer-events-none"></div>
                     <img
                       src={imgUrl.startsWith("http") ? imgUrl : `${import.meta.env.BASE_URL}${imgUrl.replace(/^\//, "")}`}
                       alt={`Equipamento ${idx + 1}`}
@@ -289,7 +289,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
                   key={idx} 
                   className="relative h-[260px] rounded-xl overflow-hidden card-luxury group cursor-pointer"
                 >
-                  <div className="absolute inset-2 border border-[#FFD700]/10 group-hover:border-[#FFD700]/35 rounded-lg z-20 pointer-events-none transition-all duration-500"></div>
+                  <div className="absolute inset-2 border border-[#E2AF55]/10 group-hover:border-[#E2AF55]/35 rounded-lg z-20 pointer-events-none transition-all duration-500"></div>
                   <img
                     src={imgUrl.startsWith("http") ? imgUrl : `${import.meta.env.BASE_URL}${imgUrl.replace(/^\//, "")}`}
                     alt={`Equipamento ou Instalação ${idx + 1} de ${service.title}`}
@@ -336,13 +336,13 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
                 className="card-luxury p-5 rounded-xl flex flex-col justify-between relative group"
               >
                 <div className="flex justify-between items-center mb-4">
-                  <span className="font-display text-2xl font-extrabold text-[#FFD700]/20 group-hover:text-[#FFD700]/45 transition-colors">
+                  <span className="font-display text-2xl font-extrabold text-[#E2AF55]/20 group-hover:text-[#E2AF55]/45 transition-colors">
                     {step.num}
                   </span>
-                  <div className="w-2 h-2 rounded-full bg-[#FFD700]"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#E2AF55]"></div>
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-xs uppercase text-white tracking-wider mb-2 group-hover:text-[#FFD700] transition-colors">
+                  <h3 className="font-display font-bold text-xs uppercase text-white tracking-wider mb-2 group-hover:text-[#E2AF55] transition-colors">
                     {step.title}
                   </h3>
                   <p className="text-[11px] text-[#D9D9D9] font-sans leading-relaxed">
