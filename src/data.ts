@@ -1,8 +1,8 @@
 import { Solution, Environment, Partner, TimelineStep, ProjectItem } from "./types";
 
 export const CONTACT_INFO = {
-  phone: "+351 [Inserir Telefone]",
-  whatsapp: "+351 [Inserir WhatsApp]", // Colocar apenas números (ex: "351912345678") para o WhatsApp link funcionar corretamento quando preenchido
+  phone: "+351 918 880 788",
+  whatsapp: "+351 918 880 788", // Colocar apenas números (ex: "351912345678") para o WhatsApp link funcionar corretamento quando preenchido
   email: "[Inserir E-mail]",
   address: "Portugal",
   slogan: "Soluções inteligentes para a sua segurança",
