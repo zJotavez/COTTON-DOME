@@ -11,6 +11,7 @@ export interface ServiceDetails {
   benefits: string[];
   seoTitle: string;
   seoDescription: string;
+  galleryImages?: string[];
 }
 
 export const SERVICES_DATA: ServiceDetails[] = [
@@ -44,7 +45,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "mais segurança para pessoas e património"
     ],
     seoTitle: "CCTV e Videovigilância | Cotton Dome LDA",
-    seoDescription: "Soluções profissionais de CCTV e videovigilância para residências, empresas e condomínios. Instalação, gravação, monitorização e acesso remoto."
+    seoDescription: "Soluções profissionais de CCTV e videovigilância para residências, empresas e condomínios. Instalação, gravação, monitorização e acesso remoto.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "intrusao",
@@ -75,7 +81,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "controlo do ambiente protegido"
     ],
     seoTitle: "Sistemas de Alarme e Intrusão | Cotton Dome LDA",
-    seoDescription: "Alarmes e deteção contra intrusão para habitações e espaços comerciais. Sensores, centrais e sirenes de alta qualidade."
+    seoDescription: "Alarmes e deteção contra intrusão para habitações e espaços comerciais. Sensores, centrais e sirenes de alta qualidade.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "acessos",
@@ -107,7 +118,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "integração com CCTV e alarmes"
     ],
     seoTitle: "Controlo de Acessos | Cotton Dome LDA",
-    seoDescription: "Sistemas de controlo de acessos por cartões, tags, biometria ou reconhecimento facial em escritórios, armazéns e condomínios."
+    seoDescription: "Sistemas de controlo de acessos por cartões, tags, biometria ou reconhecimento facial em escritórios, armazéns e condomínios.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "incendio",
@@ -138,7 +154,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "adequação a ambientes profissionais"
     ],
     seoTitle: "Sistemas de Deteção de Incêndio | Cotton Dome LDA",
-    seoDescription: "Instalação e manutenção de centrais de deteção de incêndio, detetores de fumo e sistemas de alarme contra fogo."
+    seoDescription: "Instalação e manutenção de centrais de deteção de incêndio, detetores de fumo e sistemas de alarme contra fogo.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1599740831146-5ab695202f74?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "automatismos",
@@ -169,7 +190,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "maior segurança em entradas e saídas"
     ],
     seoTitle: "Automatismos para Portões e Acessos | Cotton Dome LDA",
-    seoDescription: "Automatize os seus portões de correr ou bater e barreiras de parque. Motores de alto rendimento com comandos seguros."
+    seoDescription: "Automatize os seus portões de correr ou bater e barreiras de parque. Motores de alto rendimento com comandos seguros.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "portas-portoes",
@@ -199,7 +225,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "soluções para diferentes ambientes"
     ],
     seoTitle: "Portas de Segurança e Portões Seccionados | Cotton Dome LDA",
-    seoDescription: "Instalação de portas blindadas de alta segurança e portões seccionados térmicos para garagens e instalações industriais."
+    seoDescription: "Instalação de portas blindadas de alta segurança e portões seccionados térmicos para garagens e instalações industriais.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1509741102003-ca64bfe5f069?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "ups",
@@ -229,7 +260,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "suporte a sistemas críticos"
     ],
     seoTitle: "UPS e Sistemas de Energia de Backup | Cotton Dome LDA",
-    seoDescription: "Sistemas de alimentação ininterrupta UPS profissionais para racks de redes, CCTV e servidores corporativos."
+    seoDescription: "Sistemas de alimentação ininterrupta UPS profissionais para racks de redes, CCTV e servidores corporativos.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "serralharia",
@@ -237,7 +273,7 @@ export const SERVICES_DATA: ServiceDetails[] = [
     title: "Serralharia em Ferro e Inox",
     slogan: "Soluções metálicas resistentes, funcionais e adaptadas ao seu projeto.",
     shortDescription: "Estruturas metálicas, grades, portões e soluções sob medida em ferro e inox.",
-    description: "A Cotton Dome LDA desenvolve soluções em serralharia para ferro e inox, incluindo portões, grades, estruturas metálicas, proteções e acabamentos personalizados. O serviço é ideal para reforçar a segurança, melhorar acessos e criar estruturas sob medida para diferentes necessidades.",
+    description: "A Cotton Dome LDA desenvolve soluções em serralharia para ferro e inox, incluindo portões, grades, structures metálicas, proteções e acabamentos personalizados. O serviço é ideal para reforçar a segurança, melhorar acessos e criar estruturas sob medida para diferentes necessidades.",
     iconName: "Hammer",
     image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
     products: [
@@ -259,7 +295,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "integração com portões e automatismos"
     ],
     seoTitle: "Serralharia em Ferro e Inox | Cotton Dome LDA",
-    seoDescription: "Fabricação e montagem de portões metálicos, grades de proteção e serralharia por medida em ferro e aço inoxidável."
+    seoDescription: "Fabricação e montagem de portões metálicos, grades de proteção e serralharia por medida em ferro e aço inoxidável.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "telecomunicacoes",
@@ -289,7 +330,12 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "preparação para ambientes modernos"
     ],
     seoTitle: "Telecomunicações e Intercomunicação | Cotton Dome LDA",
-    seoDescription: "Instalação de intercomunicadores, videoporteiros IP e infraestrutura para comunicação corporativa e residencial."
+    seoDescription: "Instalação de intercomunicadores, videoporteiros IP e infraestrutura para comunicação corporativa e residencial.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+    ]
   },
   {
     id: "redes",
@@ -320,6 +366,11 @@ export const SERVICES_DATA: ServiceDetails[] = [
       "conectividade profissional"
     ],
     seoTitle: "Redes e Network Solutions | Cotton Dome LDA",
-    seoDescription: "Desenvolvimento de redes estruturadas, racks integrados, switches PoE e redes Wi-Fi empresariais estáveis."
+    seoDescription: "Desenvolvimento de redes estruturadas, racks integrados, switches PoE e redes Wi-Fi empresariais estáveis.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80"
+    ]
   }
 ];

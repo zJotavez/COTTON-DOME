@@ -246,6 +246,40 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
         </div>
       </section>
 
+      {/* 4b. GALERIA VISUAL DO SERVIÇO */}
+      {service.galleryImages && service.galleryImages.length > 0 && (
+        <section className="py-20 bg-[#050505] relative overflow-hidden border-t border-[#1a1a1a]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-xl sm:text-2xl font-display font-bold text-white tracking-wide uppercase mb-3">
+                Galeria de Soluções e Equipamentos
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-400 font-sans leading-relaxed">
+                Registo visual de soluções técnicas, equipamentos e instalações de alta segurança executadas pela nossa equipa:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {service.galleryImages.map((imgUrl, idx) => (
+                <div 
+                  key={idx} 
+                  className="relative h-[260px] rounded-xl overflow-hidden border border-[#222] bg-[#111] group hover:border-[#D4AF37]/50 transition-all duration-500 cursor-pointer shadow-lg hover:shadow-[0_4px_25px_rgba(212,175,55,0.05)]"
+                >
+                  <div className="absolute inset-2 border border-[#D4AF37]/10 group-hover:border-[#D4AF37]/35 rounded-lg z-20 pointer-events-none transition-all duration-500"></div>
+                  <img
+                    src={imgUrl}
+                    alt={`Equipamento ou Instalação ${idx + 1} de ${service.title}`}
+                    className="w-full h-full object-cover mix-blend-luminosity brightness-75 group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-700 ease-out"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10 opacity-70 group-hover:opacity-40 transition-opacity"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 5. PROCESSO DE TRABALHO */}
       <section className="py-20 bg-[#050505] relative overflow-hidden border-t border-[#1a1a1a]">
         {/* Background Video */}
