@@ -74,7 +74,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
       <section className="relative h-[480px] flex items-center justify-center overflow-hidden border-b border-[#1a1a1a]">
         {/* Background Image */}
         <img
-          src={service.image}
+          src={service.image.startsWith("http") ? service.image : `${import.meta.env.BASE_URL}${service.image.replace(/^\//, "")}`}
           alt={service.title}
           className="absolute inset-0 w-full h-full object-cover filter brightness-[0.25] contrast-[1.1] pointer-events-none"
         />
@@ -259,7 +259,31 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Mobile/Tablet: Infinite Horizontal Marquee */}
+            <div className="block lg:hidden overflow-hidden w-full relative py-4">
+              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none"></div>
+              
+              <div className="animate-marquee-ltr flex gap-4">
+                {[...service.galleryImages, ...service.galleryImages, ...service.galleryImages].map((imgUrl, idx) => (
+                  <div 
+                    key={idx} 
+                    className="relative w-[280px] h-[180px] rounded-xl overflow-hidden card-luxury group flex-shrink-0"
+                  >
+                    <div className="absolute inset-2 border border-[#FFD700]/10 rounded-lg z-20 pointer-events-none"></div>
+                    <img
+                      src={imgUrl.startsWith("http") ? imgUrl : `${import.meta.env.BASE_URL}${imgUrl.replace(/^\//, "")}`}
+                      alt={`Equipamento ${idx + 1}`}
+                      className="w-full h-full object-cover mix-blend-luminosity brightness-75 group-hover:mix-blend-normal transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10 opacity-70"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: Grelha padrão */}
+            <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-6">
               {service.galleryImages.map((imgUrl, idx) => (
                 <div 
                   key={idx} 
@@ -267,7 +291,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
                 >
                   <div className="absolute inset-2 border border-[#FFD700]/10 group-hover:border-[#FFD700]/35 rounded-lg z-20 pointer-events-none transition-all duration-500"></div>
                   <img
-                    src={imgUrl}
+                    src={imgUrl.startsWith("http") ? imgUrl : `${import.meta.env.BASE_URL}${imgUrl.replace(/^\//, "")}`}
                     alt={`Equipamento ou Instalação ${idx + 1} de ${service.title}`}
                     className="w-full h-full object-cover mix-blend-luminosity brightness-75 group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-700 ease-out"
                     loading="lazy"
@@ -335,7 +359,7 @@ export function ServiceDetail({ slug, onNavigate }: ServiceDetailProps) {
       <section id="contacto-direto" className="py-28 bg-[#0a0a0a] relative overflow-hidden border-t border-[#1a1a1a]">
         {/* Background Photo */}
         <img
-          src="/images/cctv-camera.png"
+          src={`${import.meta.env.BASE_URL}images/cctv-camera.png`}
           alt="CCTV Background"
           className="absolute inset-0 w-full h-full object-cover opacity-80 filter brightness-75 contrast-[1.1] pointer-events-none"
         />

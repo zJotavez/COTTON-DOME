@@ -21,7 +21,7 @@ export function Hero({ onQuoteClick, onExploreClick }: HeroProps) {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}videos/hero-video.mp4`} type="video/mp4" />
       </video>
 
       {/* Tech Grid Overlay on top of video */}
@@ -148,7 +148,7 @@ export function Hero({ onQuoteClick, onExploreClick }: HeroProps) {
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover opacity-80 filter brightness-95 transition-transform duration-700 group-hover:scale-105"
                 >
-                  <source src="/videos/video4.mp4" type="video/mp4" />
+                  <source src={`${import.meta.env.BASE_URL}videos/video4.mp4`} type="video/mp4" />
                 </video>
                 
                 {/* HUD Camera Overlays */}

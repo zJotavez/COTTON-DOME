@@ -20,7 +20,7 @@ export function About() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-65"
       >
-        <source src="/videos/video2.mp4" type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}videos/video2.mp4`} type="video/mp4" />
       </video>
 
       {/* Tech Grid Overlay */}

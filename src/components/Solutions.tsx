@@ -59,7 +59,7 @@ export function Solutions({ onNavigate }: SolutionsProps) {
             >
               {/* Card Background Photo */}
               <img
-                src={sol.image}
+                src={sol.image.startsWith("http") ? sol.image : `${import.meta.env.BASE_URL}${sol.image.replace(/^\//, "")}`}
                 alt={sol.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-65 group-hover:scale-105 transition-all duration-500 pointer-events-none z-0"
               />
