@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Shield, Phone } from "lucide-react";
+import { Menu, X, Shield, Phone, ArrowLeft } from "lucide-react";
 import { CONTACT_INFO } from "../data";
 
 interface HeaderProps {
@@ -69,39 +69,51 @@ export function Header({ onQuoteClick, onNavigate, currentPath }: HeaderProps) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a 
-              href="#home" 
-              onClick={(e) => handleLinkClick(e, "#home")}
-              className="flex items-center gap-3 group"
-            >
-              <div className="w-10 h-10 border border-[#D4AF37] flex items-center justify-center relative bg-[#050505] transition-colors duration-300 group-hover:bg-[#111111]">
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#D4AF37]"></div>
-                <Shield className="w-4 h-4 text-[#D4AF37] transition-transform duration-500 group-hover:rotate-12" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-bold tracking-widest text-lg leading-none uppercase">
-                  COTTON DOME
-                </span>
-                <span className="text-[#D4AF37] text-[9px] tracking-[0.25em] font-semibold uppercase mt-1 leading-none">
-                  SECURITY SOLUTIONS <span className="text-white bg-[#D4AF37]/20 px-1 rounded-[1px] text-[8px] ml-0.5">LDA</span>
-                </span>
-              </div>
-            </a>
+            {/* Logo or Back Button */}
+            {isServicePage ? (
+              <button
+                onClick={() => onNavigate("/")}
+                className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-[#D4AF37]/50 bg-[#111111]/80 hover:bg-[#111111] text-xs font-display font-bold uppercase tracking-wider text-[#CFCFCF] hover:text-[#D4AF37] rounded transition-all cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Voltar para a Home</span>
+              </button>
+            ) : (
+              <a 
+                href="#home" 
+                onClick={(e) => handleLinkClick(e, "#home")}
+                className="flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 border border-[#D4AF37] flex items-center justify-center relative bg-[#050505] transition-colors duration-300 group-hover:bg-[#111111]">
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#D4AF37]"></div>
+                  <Shield className="w-4 h-4 text-[#D4AF37] transition-transform duration-500 group-hover:rotate-12" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-white font-bold tracking-widest text-lg leading-none uppercase">
+                    COTTON DOME
+                  </span>
+                  <span className="text-[#D4AF37] text-[9px] tracking-[0.25em] font-semibold uppercase mt-1 leading-none">
+                    SECURITY SOLUTIONS <span className="text-white bg-[#D4AF37]/20 px-1 rounded-[1px] text-[8px] ml-0.5">LDA</span>
+                  </span>
+                </div>
+              </a>
+            )}
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-[#CFCFCF] hover:text-[#D4AF37] transition-colors duration-300 text-[11px] font-bold uppercase tracking-widest"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
+            {/* Desktop Navigation - Hidden on Service pages */}
+            {!isServicePage && (
+              <nav className="hidden md:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-[#CFCFCF] hover:text-[#D4AF37] transition-colors duration-300 text-[11px] font-bold uppercase tracking-widest"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </nav>
+            )}
 
             {/* Desktop CTA Button */}
             <div className="hidden md:flex items-center">
