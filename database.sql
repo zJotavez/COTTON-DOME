@@ -162,7 +162,7 @@ INSERT INTO `users` (`username`, `password_hash`) VALUES
 
 -- Seeding Site Settings
 INSERT INTO `site_settings` (`company_name`, `slogan`, `phone`, `whatsapp`, `email`, `address`, `working_hours_week`, `working_hours_sat`, `footer_text`, `social_instagram`, `social_facebook`, `social_linkedin`) VALUES
-('Cotton Dome LDA', 'Soluções inteligentes para a sua segurança', '+351 918 880 788', '+351 918 880 788', 'geral@cottondome.pt', 'Portugal', 'Segunda a Sexta-feira: 09:00h às 18:30h', 'Sábado (Urgências): 09:00h às 13:00h', 'Segurança eletrónica de alta performance para residências, empresas e condomínios.', 'https://instagram.com/cottondome', 'https://facebook.com/cottondome', 'https://linkedin.com/company/cottondome');
+('Cotton Dome LDA', 'Soluções inteligentes para a sua segurança', '+351 918 880 788', '+351 918 880 788', 'suporte@domme.pt', 'Portugal', 'Segunda a Sexta-feira: 09:00h às 18:30h', 'Sábado (Urgências): 09:00h às 13:00h', 'Segurança eletrónica de alta performance para residências, empresas e condomínios.', 'https://instagram.com/cottondome', 'https://facebook.com/cottondome', 'https://linkedin.com/company/cottondome');
 
 -- Seeding Home Content
 INSERT INTO `home_content` (`hero_title`, `hero_subtitle`, `hero_image`, `hero_video`, `primary_button_text`, `primary_button_link`, `secondary_button_text`, `secondary_button_link`) VALUES

@@ -48,7 +48,7 @@ try {
     // 2. Fetch destination email from settings
     $settingsStmt = $pdo->query("SELECT email, company_name FROM site_settings LIMIT 1");
     $settings = $settingsStmt->fetch();
-    $toEmail = ($settings && !empty($settings['email'])) ? $settings['email'] : 'geral@cottondome.pt';
+    $toEmail = ($settings && !empty($settings['email'])) ? $settings['email'] : 'suporte@domme.pt';
     $companyName = ($settings && !empty($settings['company_name'])) ? $settings['company_name'] : 'Cotton Dome LDA';
 
     // 3. Send Notification Email via PHP mail()
@@ -78,7 +78,7 @@ try {
 
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: no-reply@cottondome.pt" . "\r\n";
+    $headers .= "From: no-reply@domme.pt" . "\r\n";
     $headers .= "Reply-To: " . $email . "\r\n";
 
     // Attempt to send email (suppress errors if mail isn't configured on local server)
