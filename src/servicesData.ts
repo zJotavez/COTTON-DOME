@@ -227,9 +227,9 @@ export const SERVICES_DATA: ServiceDetails[] = [
     seoTitle: "Portas de Segurança e Portões Seccionados | Cotton Dome LDA",
     seoDescription: "Instalação de portas blindadas de alta segurança e portões seccionados térmicos para garagens e instalações industriais.",
     galleryImages: [
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80"
+      "/images/portas-portoes-1.png",
+      "/images/portas-portoes-2.png",
+      "/images/portas-portoes-3.png"
     ]
   },
   {
@@ -263,7 +263,7 @@ export const SERVICES_DATA: ServiceDetails[] = [
     seoDescription: "Sistemas de alimentação ininterrupta UPS profissionais para racks de redes, CCTV e servidores corporativos.",
     galleryImages: [
       "/images/ups-1.png",
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
+      "/images/ups-2.png",
       "/images/ups-3.png"
     ]
   },
@@ -273,7 +273,7 @@ export const SERVICES_DATA: ServiceDetails[] = [
     title: "Serralharia em Ferro e Inox",
     slogan: "Soluções metálicas resistentes, funcionais e adaptadas ao seu projeto.",
     shortDescription: "Estruturas metálicas, grades, portões e soluções sob medida em ferro e inox.",
-    description: "A Cotton Dome LDA desenvolve soluções em serralharia para ferro e inox, incluindo portões, grades, structures metálicas, proteções e acabamentos personalizados. O serviço é ideal para reforçar a segurança, melhorar acessos e criar estruturas sob medida para diferentes necessidades.",
+    description: "A Cotton Dome LDA desenvolve soluções em serralharia para ferro e inox, incluindo portões, grades, estruturas metálicas, proteções e acabamentos personalizados. O serviço é ideal para reforçar a segurança, melhorar acessos e criar estruturas sob medida para diferentes necessidades.",
     iconName: "Hammer",
     image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
     products: [
@@ -298,8 +298,8 @@ export const SERVICES_DATA: ServiceDetails[] = [
     seoDescription: "Fabricação e montagem de portões metálicos, grades de proteção e serralharia por medida em ferro e aço inoxidável.",
     galleryImages: [
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1534067783941-51c9c23eccfd?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1590486803833-ffc6de08d6f9?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
@@ -310,7 +310,7 @@ export const SERVICES_DATA: ServiceDetails[] = [
     shortDescription: "Infraestrutura técnica para comunicação, integração de sistemas e conectividade profissional.",
     description: "A Cotton Dome LDA oferece soluções em telecomunicações para apoiar sistemas de segurança, redes, comunicação e infraestrutura técnica. O serviço permite criar ambientes mais conectados, organizados e preparados para operações modernas.",
     iconName: "Radio",
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80",
     products: [
       "cablagem técnica",
       "pontos de comunicação",
@@ -332,9 +332,9 @@ export const SERVICES_DATA: ServiceDetails[] = [
     seoTitle: "Telecomunicações e Intercomunicação | Cotton Dome LDA",
     seoDescription: "Instalação de intercomunicadores, videoporteiros IP e infraestrutura para comunicação corporativa e residencial.",
     galleryImages: [
-      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {

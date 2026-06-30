@@ -33,24 +33,22 @@ try {
         5 => '["images/automatismos-1.png","images/automatismos-2.png","images/automatismos-3.png"]',
         6 => '["images/portas-portoes-1.png","images/portas-portoes-2.png","images/portas-portoes-3.png"]',
         7 => '["images/ups-1.png","images/ups-2.png","images/ups-3.png"]',
-        8 => '["images/portas-portoes-1.png","images/portas-portoes-2.png","images/portas-portoes-3.png"]',
-        9 => '["images/ups-1.png","images/ups-2.png","images/ups-3.png"]',
-        10 => '["images/ups-1.png","images/ups-2.png","images/ups-3.png"]'
+        8 => '["https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1534067783941-51c9c23eccfd?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1590486803833-ffc6de08d6f9?auto=format&fit=crop&w=600&q=80"]',
+        9 => '["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=600&q=80"]',
+        10 => '["https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80","https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80"]'
     ];
 
     foreach ($defaultImages as $serviceId => $imagesJson) {
         // Check if page details exist for service
-        $check = $pdo->prepare("SELECT id, gallery_images FROM service_pages WHERE service_id = :service_id LIMIT 1");
+        $check = $pdo->prepare("SELECT id FROM service_pages WHERE service_id = :service_id LIMIT 1");
         $check->execute(['service_id' => $serviceId]);
         $row = $check->fetch();
 
         if ($row) {
-            // Update or Set if empty or null
-            if (empty($row['gallery_images']) || $row['gallery_images'] === '[]' || $row['gallery_images'] === 'null') {
-                $up = $pdo->prepare("UPDATE service_pages SET gallery_images = :images WHERE id = :id");
-                $up->execute(['images' => $imagesJson, 'id' => $row['id']]);
-                echo "<p>[OK] Imagens da galeria configuradas para o servico ID {$serviceId}.</p>";
-            }
+            // Force synchronize/update all gallery images to ensure correct paths
+            $up = $pdo->prepare("UPDATE service_pages SET gallery_images = :images WHERE id = :id");
+            $up->execute(['images' => $imagesJson, 'id' => $row['id']]);
+            echo "<p>[OK] Imagens da galeria sincronizadas para o servico ID {$serviceId}.</p>";
         }
     }
 
