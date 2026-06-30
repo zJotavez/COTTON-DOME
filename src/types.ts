@@ -51,6 +51,8 @@ export interface SiteSettings {
   social_instagram: string;
   social_facebook: string;
   social_linkedin: string;
+  logo?: string;
+  favicon?: string;
   updated_at?: string;
 }
 

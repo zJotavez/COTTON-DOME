@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { PROJECTS } from "../data";
-import { Shield, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 import { DbGallery } from "../types";
+import { TRANSLATIONS } from "../translations";
 
 const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
 interface ProjectsProps {
   gallery?: DbGallery[];
+  lang?: "pt" | "en" | "fr";
 }
 
-export function Projects({ gallery }: ProjectsProps) {
+export function Projects({ gallery, lang = "pt" }: ProjectsProps) {
   const [activeFilter, setActiveFilter] = useState("all");
+  const t = TRANSLATIONS[lang];
 
   const filters = [
-    { id: "all", label: "Todos os Projetos" },
-    { id: "cctv", label: "CCTV" },
-    { id: "automatismos", label: "Automatismos" },
-    { id: "acessos", label: "Acessos" },
-    { id: "redes", label: "Redes" },
-    { id: "incendio", label: "Incêndio" },
+    { id: "all", label: t.projects.all },
+    { id: "cctv", label: t.projects.categories.cctv },
+    { id: "automatismos", label: t.projects.categories.automatismos },
+    { id: "acessos", label: t.projects.categories.acessos },
+    { id: "redes", label: t.projects.categories.redes },
+    { id: "incendio", label: t.projects.categories.incendio },
   ];
 
   // Use DB gallery if provided, else use static data
@@ -31,13 +34,29 @@ export function Projects({ gallery }: ProjectsProps) {
 
   const getCategoryLabel = (cat: string) => {
     switch (cat.toLowerCase()) {
-      case "cctv": return "CCTV / Videovigilância";
-      case "automatismos": return "Automatismos / Portões";
-      case "acessos": return "Controlo de Acessos";
-      case "redes": return "Redes & Telecomunicações";
-      case "incendio": return "Deteção de Incêndio";
+      case "cctv": return t.projects.categories.cctv;
+      case "automatismos": return t.projects.categories.automatismos;
+      case "acessos": return t.projects.categories.acessos;
+      case "redes": return t.projects.categories.redes;
+      case "incendio": return t.projects.categories.incendio;
       default: return cat.toUpperCase();
     }
+  };
+
+  const getProjectTranslation = (projId: string | number) => {
+    const keyMap: Record<string | number, "p1" | "p2" | "p3" | "p4" | "p5" | "p6"> = {
+      1: "p1",
+      2: "p2",
+      3: "p3",
+      4: "p4",
+      5: "p5",
+      6: "p6"
+    };
+    const key = keyMap[projId];
+    if (key) {
+      return t.projects.items[key];
+    }
+    return null;
   };
 
   const resolveImageUrl = (img: string) => {
@@ -65,7 +84,7 @@ export function Projects({ gallery }: ProjectsProps) {
             viewport={{ once: true }}
             className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
-            Portefólio de Referência
+            {t.projects.tag}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
@@ -73,7 +92,7 @@ export function Projects({ gallery }: ProjectsProps) {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-4"
           >
-            Aplicações e Projetos
+            {t.projects.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -81,7 +100,7 @@ export function Projects({ gallery }: ProjectsProps) {
             viewport={{ once: true }}
             className="text-sm sm:text-base text-[#CFCFCF] font-sans leading-relaxed"
           >
-            Explore o nível de acabamento técnico e de engenharia que aplicamos em cada instalação real. Cada imagem representa a excelência e o compromisso da Cotton Dome LDA.
+            {t.projects.subtitle}
           </motion.p>
         </div>
 
@@ -106,8 +125,13 @@ export function Projects({ gallery }: ProjectsProps) {
         <motion.div layout className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((proj: any, idx) => {
-              const categoryLabel = proj.categoryLabel || getCategoryLabel(proj.category);
+              const categoryLabel = getCategoryLabel(proj.category);
               const imgUrl = resolveImageUrl(proj.image);
+              
+              // Get translation
+              const localTrans = getProjectTranslation(proj.id);
+              const displayTitle = localTrans ? localTrans.title : proj.title;
+              const displayDesc = localTrans ? localTrans.desc : proj.description;
 
               return (
                 <motion.div
@@ -130,7 +154,7 @@ export function Projects({ gallery }: ProjectsProps) {
 
                     <img
                       src={imgUrl}
-                      alt={proj.title}
+                      alt={displayTitle}
                       className="w-full h-full object-cover mix-blend-luminosity brightness-75 group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-750 ease-out"
                       referrerPolicy="no-referrer"
                     />
@@ -151,11 +175,11 @@ export function Projects({ gallery }: ProjectsProps) {
                         {categoryLabel}
                       </span>
                       <h3 className="font-display font-bold text-xs sm:text-base text-white group-hover:text-[#E2AF55] transition-colors duration-300 leading-tight">
-                        {proj.title}
+                        {displayTitle}
                       </h3>
                     </div>
                     <p className="text-[10px] sm:text-xs text-[#D9D9D9] font-sans line-clamp-2 mt-1 leading-normal sm:leading-relaxed">
-                      {proj.description}
+                      {displayDesc}
                     </p>
                   </div>
                 </motion.div>

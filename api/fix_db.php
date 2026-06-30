@@ -13,6 +13,12 @@ try {
     $stmt1->execute();
     echo "<p>[OK] E-mail atualizado na tabela site_settings.</p>";
 
+    // Update main service images to premium assets
+    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=1200&q=80' WHERE id = 1");
+    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80' WHERE id = 2");
+    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80' WHERE id = 3");
+    echo "<p>[OK] Imagens dos serviços principais CCTV, Alarmes e Controlo de Acessos atualizadas.</p>";
+
     // 2. Check if gallery_images column exists in service_pages, if not add it
     $q = $pdo->query("SHOW COLUMNS FROM service_pages LIKE 'gallery_images'");
     $columnExists = $q->fetch();

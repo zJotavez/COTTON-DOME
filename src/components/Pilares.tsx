@@ -1,31 +1,61 @@
 import React from "react";
 import { motion } from "motion/react";
 import { ShieldCheck, UserCheck, Award } from "lucide-react";
+import { TRANSLATIONS } from "../translations";
 
-export function Pilares() {
+interface PilaresProps {
+  lang: "pt" | "en" | "fr";
+}
+
+export function Pilares({ lang }: PilaresProps) {
+  const t = TRANSLATIONS[lang];
+
   const pillars = [
     {
-      title: "Qualidade",
-      description:
-        "Trabalhamos com equipamentos selecionados e soluções pensadas para garantir eficiência, durabilidade e segurança.",
+      title: lang === "pt" ? "Qualidade" : lang === "en" ? "Quality" : "Qualité",
+      description: t.pillars.p2Desc,
       icon: <Award className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80",
     },
     {
-      title: "Confiança",
-      description:
-        "Desenvolvemos projetos técnicos adaptados à realidade de cada cliente, com foco em proteção e tranquilidade.",
+      title: lang === "pt" ? "Confiança" : lang === "en" ? "Trust" : "Confiance",
+      description: t.pillars.p3Desc,
       icon: <ShieldCheck className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80",
     },
     {
-      title: "Profissionalismo",
-      description:
-        "Da análise inicial à instalação final, atuamos com rigor técnico, organization e compromisso.",
+      title: lang === "pt" ? "Profissionalismo" : lang === "en" ? "Professionalism" : "Professionnalisme",
+      description: t.pillars.p1Desc,
       icon: <UserCheck className="w-6 h-6 text-[#C28D35]" />,
       bgImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80",
     },
   ];
+
+  const marqueeTexts = {
+    pt: [
+      "✦ QUALIDADE GARANTIDA",
+      "✦ RIGOR TÉCNICO CERTIFICADO",
+      "✦ SOLUÇÕES INTELIGENTES DE SEGURANÇA",
+      "✦ ASSISTÊNCIA TÉCNICA LOCAL DEDICADA",
+      "✦ PROTEÇÃO PERMANENTE 24/7"
+    ],
+    en: [
+      "✦ GUARANTEED QUALITY",
+      "✦ CERTIFIED TECHNICAL RIGOR",
+      "✦ SMART SECURITY SOLUTIONS",
+      "✦ DEDICATED LOCAL TECHNICAL SUPPORT",
+      "✦ PERMANENT PROTECTION 24/7"
+    ],
+    fr: [
+      "✦ QUALITÉ GARANTIE",
+      "✦ RIGUEUR TECHNIQUE CERTIFIÉE",
+      "✦ SOLUTIONS DE SÉCURITÉ INTELLIGENTES",
+      "✦ SUPPORT TECHNIQUE LOCAL DÉDIÉ",
+      "✦ PROTECTION PERMANENTE 24/7"
+    ]
+  };
+
+  const texts = marqueeTexts[lang] || marqueeTexts.pt;
 
   return (
     <section className="bg-[#050505] relative overflow-hidden border-y border-[#1A1A1A]">
@@ -72,39 +102,16 @@ export function Pilares() {
       {/* Infinite Marquee Phrase Row */}
       <div className="w-full bg-[#111111]/40 border-t border-[#E2AF55]/15 py-4 overflow-hidden relative">
         <div className="animate-marquee-ltr flex items-center gap-12 whitespace-nowrap">
-          {/* First set of elements */}
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ QUALIDADE GARANTIDA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
-            ✦ RIGOR TÉCNICO CERTIFICADO
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ SOLUÇÕES INTELIGENTES DE SEGURANÇA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
-            ✦ ASSISTÊNCIA TÉCNICA LOCAL DEDICADA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ PROTEÇÃO PERMANENTE 24/7
-          </span>
-
-          {/* Duplicated set for infinite loop effect */}
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ QUALIDADE GARANTIDA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
-            ✦ RIGOR TÉCNICO CERTIFICADO
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ SOLUÇÕES INTELIGENTES DE SEGURANÇA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-white flex items-center gap-2">
-            ✦ ASSISTÊNCIA TÉCNICA LOCAL DEDICADA
-          </span>
-          <span className="text-[10px] font-display font-bold uppercase tracking-widest text-[#C28D35] flex items-center gap-2">
-            ✦ PROTEÇÃO PERMANENTE 24/7
-          </span>
+          {[...texts, ...texts].map((text, i) => (
+            <span
+              key={i}
+              className={`text-[10px] font-display font-bold uppercase tracking-widest flex items-center gap-2 ${
+                i % 2 === 0 ? "text-[#C28D35]" : "text-white"
+              }`}
+            >
+              {text}
+            </span>
+          ))}
         </div>
       </div>
     </section>

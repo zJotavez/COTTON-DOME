@@ -1,14 +1,17 @@
 import React from "react";
-import { ChevronRight, Phone, Mail, MapPin } from "lucide-react";
+import { ChevronRight, Phone, MapPin } from "lucide-react";
 import { CONTACT_INFO } from "../data";
 import { SiteSettings } from "../types";
+import { TRANSLATIONS } from "../translations";
 
 interface FooterProps {
   onNavigate: (path: string) => void;
   settings?: SiteSettings;
+  lang?: "pt" | "en" | "fr";
 }
 
-export function Footer({ onNavigate, settings }: FooterProps) {
+export function Footer({ onNavigate, settings, lang = "pt" }: FooterProps) {
+  const t = TRANSLATIONS[lang];
   const currentYear = 2026;
 
   const phoneVal = settings?.phone || CONTACT_INFO.phone;
@@ -21,31 +24,34 @@ export function Footer({ onNavigate, settings }: FooterProps) {
   const isPhonePlaceholder = phoneVal.includes("[");
   const phoneHref = isPhonePlaceholder ? "#contacto" : `tel:${phoneVal.replace(/[^\d+]/g, "")}`;
 
-  const isEmailPlaceholder = emailVal.includes("[");
-  const emailHref = isEmailPlaceholder ? "#contacto" : `mailto:${emailVal}`;
-
   const quickLinks = [
-    { label: "Início", href: "#home" },
-    { label: "Soluções", href: "#solucoes" },
-    { label: "Fornecedores", href: "#fornecedores" },
-    { label: "Projetos", href: "#projetos" },
-    { label: "Sobre Nós", href: "#sobre" },
-    { label: "Contacto", href: "#contacto" },
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.solutions, href: "#solucoes" },
+    { label: lang === "pt" ? "Fornecedores" : lang === "en" ? "Suppliers" : "Fournisseurs", href: "#fornecedores" },
+    { label: t.nav.projects, href: "#projetos" },
+    { label: lang === "pt" ? "Sobre Nós" : lang === "en" ? "About Us" : "À Propos", href: "#sobre" },
+    { label: t.nav.contact, href: "#contacto" },
   ];
 
   const mainServices = [
-    { label: "Videovigilância (CCTV)", href: "#solucoes" },
-    { label: "Sistemas de Alarme", href: "#solucoes" },
-    { label: "Controlo de Acessos", href: "#solucoes" },
-    { label: "Deteção de Incêndio", href: "#solucoes" },
-    { label: "Automatismos", href: "#solucoes" },
-    { label: "Redes & Telecomunicações", href: "#solucoes" },
+    { label: t.services.cctv.title.split(" / ")[0], href: "#solucoes" },
+    { label: t.services.intrusao.title, href: "#solucoes" },
+    { label: t.services.acessos.title, href: "#solucoes" },
+    { label: t.services.incendio.title, href: "#solucoes" },
+    { label: t.services.automatismos.title, href: "#solucoes" },
+    { label: t.services.redes.title.split(" & ")[0], href: "#solucoes" },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     onNavigate("/" + href);
   };
+
+  const footerDesc = lang === "pt"
+    ? "Desenvolvimento e integração de soluções inteligentes premium de segurança eletrónica, automação e infraestrutura de telecomunicações para clientes corporativos e residenciais em Portugal."
+    : lang === "en"
+    ? "Development and integration of premium smart electronic security solutions, automation and telecommunications infrastructure for corporate and residential clients in Portugal."
+    : "Développement et intégration de solutions intelligentes premium de sécurité électronique, d'automatisation et d'infrastructures de télécommunications pour clients corporatifs et résidentiels au Portugal.";
 
   return (
     <footer className="bg-[#050505] border-t border-[#1e1e1e] pt-16 pb-8 relative overflow-hidden">
@@ -79,17 +85,17 @@ export function Footer({ onNavigate, settings }: FooterProps) {
               </div>
             </a>
             <p className="text-xs sm:text-sm text-gray-400 font-sans leading-relaxed mb-6">
-              Desenvolvimento e integração de soluções inteligentes premium de segurança eletrónica, automação e infraestrutura de telecomunicações para clientes corporativos e residenciais em Portugal.
+              {footerDesc}
             </p>
             <span className="text-xs font-mono text-[#C28D35]">
-              Soluções inteligentes para a sua segurança
+              {t.solutions.title}
             </span>
           </div>
 
           {/* Col 2: Quick Links */}
           <div className="lg:col-span-2 lg:col-start-6">
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-white mb-6">
-              Navegação
+              {lang === "pt" ? "Navegação" : lang === "en" ? "Navigation" : "Navigation"}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -110,7 +116,7 @@ export function Footer({ onNavigate, settings }: FooterProps) {
           {/* Col 3: Services */}
           <div className="lg:col-span-3">
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-white mb-6">
-              Soluções Técnicas
+              {lang === "pt" ? "Soluções Técnicas" : lang === "en" ? "Technical Solutions" : "Solutions Techniques"}
             </h4>
             <ul className="space-y-3">
               {mainServices.map((srv) => (
@@ -131,7 +137,7 @@ export function Footer({ onNavigate, settings }: FooterProps) {
           {/* Col 4: Quick Contact */}
           <div className="lg:col-span-2">
             <h4 className="font-display font-bold text-xs uppercase tracking-wider text-white mb-6">
-              Contactos
+              {lang === "pt" ? "Contactos" : "Contacts"}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-2.5">
@@ -161,13 +167,13 @@ export function Footer({ onNavigate, settings }: FooterProps) {
         <div className="border-t border-[#C28D35]/20 py-6 mt-8 mb-4 flex flex-col md:flex-row items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-[#CFCFCF]/50 gap-4">
           <div className="flex flex-wrap gap-6 md:gap-12 justify-center md:justify-start">
             <div className="flex items-center gap-3">
-              <span className="text-[#C28D35]">01.</span> Qualidade Superior
+              <span className="text-[#C28D35]">01.</span> {lang === "pt" ? "Qualidade Superior" : lang === "en" ? "Superior Quality" : "Qualité Supérieure"}
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[#C28D35]">02.</span> Confiança Absoluta
+              <span className="text-[#C28D35]">02.</span> {lang === "pt" ? "Confiança Absoluta" : lang === "en" ? "Absolute Trust" : "Confiance Absolue"}
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[#C28D35]">03.</span> Rigor Técnico
+              <span className="text-[#C28D35]">03.</span> {lang === "pt" ? "Rigor Técnico" : lang === "en" ? "Technical Rigor" : "Rigueur Technique"}
             </div>
           </div>
           <div className="flex items-center gap-8">
@@ -178,11 +184,15 @@ export function Footer({ onNavigate, settings }: FooterProps) {
         {/* Bottom copyright disclaimer bar */}
         <div className="border-t border-[#1e1e1e] pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[11px] text-gray-500 font-sans text-center sm:text-left">
-            © {currentYear} Cotton Dome LDA. Todos os direitos reservados.
+            © {currentYear} Cotton Dome LDA. {lang === "pt" ? "Todos os direitos reservados." : lang === "en" ? "All rights reserved." : "Tous droits réservés."}
           </p>
           <div className="flex gap-6 text-[10px] text-gray-500 font-sans">
-            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">Termos de Utilização</span>
-            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">Política de Privacidade</span>
+            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">
+              {lang === "pt" ? "Termos de Utilização" : lang === "en" ? "Terms of Use" : "Conditions d'Utilisation"}
+            </span>
+            <span className="hover:text-[#C28D35] cursor-pointer transition-colors">
+              {lang === "pt" ? "Política de Privacidade" : lang === "en" ? "Privacy Policy" : "Politique de Confidentialité"}
+            </span>
           </div>
         </div>
 

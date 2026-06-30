@@ -1,12 +1,16 @@
 import React from "react";
 import { motion } from "motion/react";
 import { MessageSquare } from "lucide-react";
+import { TRANSLATIONS } from "../translations";
 
 interface HeroQuoteProps {
   onTalkClick: () => void;
+  lang?: "pt" | "en" | "fr";
 }
 
-export function HeroQuote({ onTalkClick }: HeroQuoteProps) {
+export function HeroQuote({ onTalkClick, lang = "pt" }: HeroQuoteProps) {
+  const t = TRANSLATIONS[lang];
+
   return (
     <section className="relative py-28 bg-gradient-to-b from-[#050505] to-[#0a0a0a] overflow-hidden border-y border-[#1a1a1a]">
       {/* Background Image */}
@@ -47,7 +51,7 @@ export function HeroQuote({ onTalkClick }: HeroQuoteProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto text-3d-gold"
         >
-          “Protegemos o que é importante com tecnologia, precisão e confiança.”
+          “{t.quoteSection.title}”
         </motion.h2>
 
         {/* Subtext */}
@@ -58,7 +62,7 @@ export function HeroQuote({ onTalkClick }: HeroQuoteProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-sm sm:text-base md:text-lg text-[#CFCFCF] font-sans leading-relaxed max-w-2xl mx-auto mb-10"
         >
-          Soluções integradas para tornar residências, empresas e espaços profissionais mais seguros, modernos e eficientes.
+          {t.quoteSection.subtitle}
         </motion.p>
 
         {/* Quick CTA to talk to Cotton Dome */}
@@ -73,7 +77,7 @@ export function HeroQuote({ onTalkClick }: HeroQuoteProps) {
             className="inline-flex items-center gap-2 px-8 py-4 rounded font-display font-bold uppercase tracking-wider text-xs border border-[#C28D35] text-[#C28D35] hover:text-black hover:bg-[#C28D35] transition-all duration-300 shadow-[0_4px_20px_rgba(194,141,53,0.1)] hover:shadow-[0_4px_25px_rgba(194,141,53,0.35)]"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Falar com a Cotton Dome</span>
+            <span>{t.quoteSection.cta}</span>
           </button>
         </motion.div>
       </div>

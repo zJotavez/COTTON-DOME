@@ -4,17 +4,28 @@ import { LucideIcon } from "./LucideIcon";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { DbService } from "../types";
+import { TRANSLATIONS } from "../translations";
 
 const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
 interface SolutionsProps {
   onNavigate: (path: string) => void;
   services?: DbService[];
+  lang?: "pt" | "en" | "fr";
 }
 
-export function Solutions({ onNavigate, services }: SolutionsProps) {
+const mapSlugToKey = (slug: string): string => {
+  if (slug === "alarme-intrusao") return "intrusao";
+  if (slug === "controle-acesso") return "acessos";
+  if (slug === "ups-energia") return "ups";
+  if (slug === "redes-estruturadas") return "redes";
+  return slug;
+};
+
+export function Solutions({ onNavigate, services, lang = "pt" }: SolutionsProps) {
   // Use DB services if provided, else use static fallback data
   const activeServices = services && services.length > 0 ? services : SERVICES_DATA;
+  const t = TRANSLATIONS[lang];
 
   // Resolve media URLs
   const resolveMediaUrl = (url: string | undefined, defaultUrl: string) => {
@@ -47,7 +58,7 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
             viewport={{ once: true }}
             className="font-mono text-xs uppercase tracking-widest text-[#C28D35] mb-3"
           >
-            Serviços Especializados
+            {t.solutions.tag}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
@@ -55,7 +66,7 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-4"
           >
-            Soluções inteligentes para a sua segurança
+            {t.solutions.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -63,7 +74,7 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
             viewport={{ once: true }}
             className="text-sm sm:text-base text-[#CFCFCF] font-sans leading-relaxed"
           >
-            A Cotton Dome LDA oferece soluções completas em segurança, automação e infraestrutura técnica, adaptadas às necessidades de cada cliente.
+            {t.solutions.subtitle}
           </motion.p>
         </div>
 
@@ -73,6 +84,12 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
             const shortDesc = sol.short_description || sol.shortDescription || "";
             const iconName = sol.icon || sol.iconName || "Camera";
             const serviceImg = resolveMediaUrl(sol.image, "");
+
+            // Look up localized text
+            const serviceKey = mapSlugToKey(sol.slug);
+            const translation = t.services[serviceKey];
+            const displayTitle = translation ? translation.title : sol.title;
+            const displayDesc = translation ? translation.shortDesc : shortDesc;
 
             return (
               <motion.div
@@ -87,7 +104,7 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
                 {/* Card Background Photo */}
                 <img
                   src={serviceImg}
-                  alt={sol.title}
+                  alt={displayTitle}
                   className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-65 group-hover:scale-105 transition-all duration-500 pointer-events-none z-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/50 to-[#111111]/80 z-0 pointer-events-none"></div>
@@ -102,18 +119,18 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
 
                   {/* Service Title */}
                   <h3 className="font-display font-bold text-xs sm:text-base text-white tracking-wide mb-1 sm:mb-2 group-hover:text-[#E2AF55] transition-colors leading-tight">
-                    {sol.title.includes(" / ") ? sol.title.split(" / ")[0] : sol.title}
+                    {displayTitle.includes(" / ") ? displayTitle.split(" / ")[0] : displayTitle}
                   </h3>
 
                   {/* Short Description */}
                   <p className="text-[10px] sm:text-xs text-[#D9D9D9] font-sans leading-tight sm:leading-normal line-clamp-2">
-                    {shortDesc}
+                    {displayDesc}
                   </p>
                 </div>
 
                 {/* Action Button: Saber mais */}
                 <div className="relative z-10 flex items-center gap-1.5 text-[9px] sm:text-[10px] font-display font-bold uppercase tracking-wider text-[#B8B8B8] group-hover:text-[#E2AF55] transition-colors mt-2 sm:mt-4">
-                  <span>Saber mais</span>
+                  <span>{t.solutions.learnMore}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.div>

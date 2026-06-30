@@ -1,21 +1,23 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ShieldAlert, Cpu, Network, CheckCircle2 } from "lucide-react";
+import { Cpu, CheckCircle2 } from "lucide-react";
 import { AboutContent } from "../types";
+import { TRANSLATIONS } from "../translations";
 
 const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
 interface AboutProps {
   content?: AboutContent;
+  lang?: "pt" | "en" | "fr";
 }
 
-export function About({ content }: AboutProps) {
-  const bulletPoints = [
-    { text: "Instalações profissionais sob rigorosos critérios de engenharia", icon: <CheckCircle2 className="w-4 h-4 text-[#E2AF55]" /> },
-    { text: "Equipamentos de alto padrão tecnológico (Motorline e Visiotech)", icon: <CheckCircle2 className="w-4 h-4 text-[#E2AF55]" /> },
-    { text: "Projetos 100% personalizados, ajustados ao seu espaço real", icon: <CheckCircle2 className="w-4 h-4 text-[#E2AF55]" /> },
-    { text: "Suporte pós-instalação de alta fiabilidade em território nacional", icon: <CheckCircle2 className="w-4 h-4 text-[#E2AF55]" /> },
-  ];
+export function About({ content, lang = "pt" }: AboutProps) {
+  const t = TRANSLATIONS[lang];
+
+  const bulletPoints = t.about.valuesList.map((text) => ({
+    text,
+    icon: <CheckCircle2 className="w-4 h-4 text-[#E2AF55]" />
+  }));
 
   // Resolve media URLs (check if they are relative DB uploads or absolute links)
   const resolveMediaUrl = (url: string | undefined, defaultUrl: string) => {
@@ -32,8 +34,8 @@ export function About({ content }: AboutProps) {
     return `${cleanBase}${cleanUrl}`;
   };
 
-  const aboutTitle = content?.title || "Sobre a Cotton Dome LDA";
-  const aboutDesc = content?.description || "A Cotton Dome LDA atua no desenvolvimento de soluções inteligentes para segurança, automação e infraestrutura técnica. Com foco em qualidade, confiança e profissionalismo, oferecemos serviços em videovigilância, intrusão, controlo de acessos, deteção de incêndio, automatismos, redes, telecomunicações, UPS, serralharia e portões de segurança.";
+  const aboutTitle = lang === "pt" && content?.title ? content.title : t.about.title;
+  const aboutDesc = lang === "pt" && content?.description ? content.description : `${t.about.desc1} ${t.about.desc2}`;
   const videoSource = resolveMediaUrl(content?.video, `${import.meta.env.BASE_URL}videos/video2.mp4`);
   const imageSource = resolveMediaUrl(content?.image, "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80");
 
@@ -74,7 +76,7 @@ export function About({ content }: AboutProps) {
               viewport={{ once: true }}
               className="font-mono text-xs uppercase tracking-widest text-[#E2AF55] mb-3"
             >
-              A Nossa Empresa
+              {t.about.tag}
             </motion.p>
             
             <motion.h2
@@ -105,7 +107,7 @@ export function About({ content }: AboutProps) {
             </motion.div>
 
             {/* Mission, Vision, Values or Default Bullet list */}
-            {content?.mission || content?.vision || content?.values ? (
+            {lang === "pt" && (content?.mission || content?.vision || content?.values) ? (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -115,19 +117,19 @@ export function About({ content }: AboutProps) {
               >
                 {content.mission && (
                   <div>
-                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">Missão</span>
+                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">{t.about.mission}</span>
                     <p className="text-xs text-[#CFCFCF] font-sans leading-relaxed">{content.mission}</p>
                   </div>
                 )}
                 {content.vision && (
                   <div>
-                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">Visão</span>
+                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">{t.about.vision}</span>
                     <p className="text-xs text-[#CFCFCF] font-sans leading-relaxed">{content.vision}</p>
                   </div>
                 )}
                 {content.values && (
                   <div>
-                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">Valores</span>
+                    <span className="block font-mono text-[9px] text-[#E2AF55] uppercase tracking-widest mb-1.5 font-bold">{t.about.values}</span>
                     <p className="text-xs text-[#CFCFCF] font-sans leading-relaxed">{content.values}</p>
                   </div>
                 )}
@@ -177,8 +179,16 @@ export function About({ content }: AboutProps) {
                     <Cpu className="w-5 h-5 animate-pulse" />
                   </div>
                   <div>
-                    <span className="block font-display text-[10px] uppercase tracking-wider text-[#E2AF55] font-bold">Rigor de Engenharia</span>
-                    <span className="block text-xs text-[#D9D9D9] mt-1 font-sans">Cada projeto passa por um rigoroso planeamento técnico antes de iniciar a instalação.</span>
+                    <span className="block font-display text-[10px] uppercase tracking-wider text-[#E2AF55] font-bold">
+                      {lang === "pt" ? "Rigor de Engenharia" : lang === "en" ? "Engineering Rigor" : "Rigueur d'Ingénierie"}
+                    </span>
+                    <span className="block text-xs text-[#D9D9D9] mt-1 font-sans">
+                      {lang === "pt" 
+                        ? "Cada projeto passa por um rigoroso planeamento técnico antes de iniciar a instalação."
+                        : lang === "en"
+                        ? "Each project undergoes rigorous technical planning before starting installation."
+                        : "Chaque projet fait l'objet d'une planification technique rigoureuse avant de commencer l'installation."}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -190,4 +200,3 @@ export function About({ content }: AboutProps) {
     </section>
   );
 }
-

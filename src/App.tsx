@@ -13,6 +13,9 @@ import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import { ServiceDetail } from "./components/ServiceDetail";
 import { AdminDashboard } from "./components/AdminDashboard";
+import { LanguageSelector } from "./components/LanguageSelector";
+import { Equipments } from "./components/Equipments";
+import { TRANSLATIONS } from "./translations";
 import { CONTACT_INFO } from "./data";
 
 const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
@@ -21,6 +24,15 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [selectedService, setSelectedService] = useState("");
   const [dbData, setDbData] = useState<any>(null);
+  const [language, setLanguage] = useState<"pt" | "en" | "fr">(() => {
+    const saved = localStorage.getItem("cotton-dome-lang");
+    return (saved === "pt" || saved === "en" || saved === "fr") ? saved : "pt";
+  });
+
+  const handleLangChange = (lang: "pt" | "en" | "fr") => {
+    setLanguage(lang);
+    localStorage.setItem("cotton-dome-lang", lang);
+  };
 
   // Load site settings and content from the database
   useEffect(() => {
@@ -163,7 +175,7 @@ export default function App() {
   // Dynamically update favicon if set in settings
   useEffect(() => {
     if (dbData?.settings?.favicon) {
-      let link = document.querySelector("link[rel~='icon']") as HTMLLinkLinkElement;
+      let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
       if (!link) {
         link = document.createElement("link");
         link.rel = "icon";
@@ -214,7 +226,7 @@ export default function App() {
   // 1. CONDITIONAL ROUTING: Admin Panel
   if (currentPath.startsWith("/admin")) {
     return (
-      <AdminDashboard onLogout={() => navigate("/")} />
+      <AdminDashboard onNavigate={navigate} />
     );
   }
 
@@ -241,6 +253,7 @@ export default function App() {
         }}
         onNavigate={navigate}
         currentPath={currentPath}
+        lang={language}
       />
 
       {isServicePage ? (
@@ -250,6 +263,7 @@ export default function App() {
           onNavigate={navigate}
           services={dbData?.services}
           pages={dbData?.service_pages}
+          lang={language}
         />
       ) : (
         // Render full home page
@@ -259,39 +273,47 @@ export default function App() {
             content={dbData?.home}
             onQuoteClick={() => scrollToSection("contacto")}
             onExploreClick={() => scrollToSection("solucoes")}
+            lang={language}
           />
 
           {/* Value Pillars */}
-          <Pilares />
+          <Pilares lang={language} />
 
           {/* Services & Solutions Grid */}
           <Solutions 
             onNavigate={navigate}
             services={dbData?.services}
+            lang={language}
           />
 
+          {/* Equipments Section */}
+          <Equipments lang={language} />
+
           {/* Bento Grid: Environments Served */}
-          <Environments />
+          <Environments lang={language} />
 
           {/* Prestigious Partners */}
           <Partners 
             suppliers={dbData?.suppliers}
+            lang={language}
           />
 
           {/* Chronological Workflow */}
-          <HowWeWork />
+          <HowWeWork lang={language} />
 
           {/* Gallery of Projects */}
           <Projects 
             gallery={dbData?.gallery}
+            lang={language}
           />
 
           {/* Slogan Quote Section */}
-          <HeroQuote onTalkClick={() => scrollToSection("contacto")} />
+          <HeroQuote onTalkClick={() => scrollToSection("contacto")} lang={language} />
 
           {/* Institutional About */}
           <About 
             content={dbData?.about}
+            lang={language}
           />
 
           {/* Contact Form with auto-filling dropdowns */}
@@ -300,6 +322,7 @@ export default function App() {
             onClearService={handleClearService}
             settings={dbData?.settings}
             services={dbData?.services}
+            lang={language}
           />
         </main>
       )}
@@ -308,7 +331,11 @@ export default function App() {
       <Footer 
         onNavigate={navigate}
         settings={dbData?.settings}
+        lang={language}
       />
+
+      {/* Language Selector Button */}
+      <LanguageSelector currentLang={language} onLangChange={handleLangChange} />
 
       {/* Floating WhatsApp Button */}
       <a

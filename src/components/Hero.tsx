@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Eye, Key, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, Eye, Key, Cpu } from "lucide-react";
 import { HomeContent } from "../types";
+import { TRANSLATIONS } from "../translations";
 
 const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
@@ -9,9 +10,12 @@ interface HeroProps {
   onQuoteClick: () => void;
   onExploreClick: () => void;
   content?: HomeContent;
+  lang?: "pt" | "en" | "fr";
 }
 
-export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
+export function Hero({ onQuoteClick, onExploreClick, content, lang = "pt" }: HeroProps) {
+  const t = TRANSLATIONS[lang];
+
   const resolveMediaUrl = (url: string | undefined, defaultUrl: string) => {
     if (!url) return defaultUrl;
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
@@ -26,11 +30,13 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
     return `${cleanBase}${cleanUrl}`;
   };
 
-  const heroTitle = content?.hero_title || "Segurança Inteligente para Residências, Empresas e Condomínios";
-  const heroSubtitle = content?.hero_subtitle || "A Cotton Dome LDA desenvolve soluções completas em videovigilância, controlo de acessos, intrusão, automatismos, redes, telecomunicações e sistemas de proteção profissional.";
+  // If language is not PT, we bypass the DB-loaded title and subtitle since the DB contains Portuguese text.
+  // This allows the website to fully translate into English or French.
+  const heroTitle = lang === "pt" && content?.hero_title ? content.hero_title : t.hero.title;
+  const heroSubtitle = lang === "pt" && content?.hero_subtitle ? content.hero_subtitle : t.hero.subtitle;
   const videoSource = resolveMediaUrl(content?.hero_video, `${import.meta.env.BASE_URL}videos/hero-video.mp4`);
-  const primaryBtnText = content?.primary_button_text || "Solicitar Orçamento";
-  const secondaryBtnText = content?.secondary_button_text || "Conhecer Soluções";
+  const primaryBtnText = lang === "pt" && content?.primary_button_text ? content.primary_button_text : t.hero.ctaPrimary;
+  const secondaryBtnText = lang === "pt" && content?.secondary_button_text ? content.secondary_button_text : t.hero.ctaSecondary;
 
   return (
     <section
@@ -74,7 +80,7 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
               transition={{ duration: 0.5 }}
               className="inline-block px-3 py-1 border border-[#E2AF55]/40 bg-[#111111]/90 text-[#E2AF55] text-[10px] font-bold tracking-[0.2em] uppercase mb-6 w-fit rounded shadow-[0_0_15px_rgba(226,175,85,0.1)]"
             >
-              Proteção Inteligente
+              {t.hero.badge}
             </motion.div>
 
             <motion.h1
@@ -83,11 +89,29 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] tracking-tight mb-6 uppercase"
             >
-              {heroTitle.includes("Inteligente") ? (
+              {heroTitle.includes("Inteligente") || heroTitle.includes("Smart") || heroTitle.includes("Intelligente") ? (
                 <span>
-                  {heroTitle.split("Inteligente")[0]}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C28D35] via-[#E2AF55] to-[#A37125] filter drop-shadow-[0_2px_10px_rgba(226,175,85,0.2)]">Inteligente</span>
-                  {heroTitle.split("Inteligente")[1]}
+                  {heroTitle.includes("Inteligente") && (
+                    <>
+                      {heroTitle.split("Inteligente")[0]}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C28D35] via-[#E2AF55] to-[#A37125] filter drop-shadow-[0_2px_10px_rgba(226,175,85,0.2)]">Inteligente</span>
+                      {heroTitle.split("Inteligente")[1]}
+                    </>
+                  )}
+                  {heroTitle.includes("Smart") && (
+                    <>
+                      {heroTitle.split("Smart")[0]}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C28D35] via-[#E2AF55] to-[#A37125] filter drop-shadow-[0_2px_10px_rgba(226,175,85,0.2)]">Smart</span>
+                      {heroTitle.split("Smart")[1]}
+                    </>
+                  )}
+                  {heroTitle.includes("Intelligente") && (
+                    <>
+                      {heroTitle.split("Intelligente")[0]}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C28D35] via-[#E2AF55] to-[#A37125] filter drop-shadow-[0_2px_10px_rgba(226,175,85,0.2)]">Intelligente</span>
+                      {heroTitle.split("Intelligente")[1]}
+                    </>
+                  )}
                 </span>
               ) : (
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C28D35] via-[#E2AF55] to-[#A37125] filter drop-shadow-[0_2px_10px_rgba(226,175,85,0.2)]">{heroTitle}</span>
@@ -100,7 +124,7 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-[#D9D9D9] max-w-xl leading-relaxed mb-8 font-sans"
             >
-              {heroSubtitle.includes("Cotton Dome LDA") ? (
+              {heroSubtitle.includes("Cotton Dome") ? (
                 <span>
                   {heroSubtitle.split("Cotton Dome").map((chunk, i) => (
                     <React.Fragment key={i}>
@@ -145,15 +169,25 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
             >
               <div>
                 <span className="block font-display text-lg font-bold text-[#C28D35]">100%</span>
-                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">Eficiente</span>
+                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">
+                  {lang === "pt" ? "Eficiente" : lang === "en" ? "Efficient" : "Efficace"}
+                </span>
               </div>
               <div>
-                <span className="block font-display text-lg font-bold text-[#C28D35]">Suporte</span>
-                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">Local Dedicado</span>
+                <span className="block font-display text-lg font-bold text-[#C28D35]">
+                  {lang === "pt" ? "Suporte" : "Support"}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">
+                  {lang === "pt" ? "Local Dedicado" : lang === "en" ? "Dedicated Local" : "Local Dédié"}
+                </span>
               </div>
               <div>
-                <span className="block font-display text-lg font-bold text-[#C28D35]">Rigor</span>
-                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">Técnico Certificado</span>
+                <span className="block font-display text-lg font-bold text-[#C28D35]">
+                  {lang === "pt" ? "Rigor" : lang === "en" ? "Rigor" : "Rigueur"}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-mono">
+                  {lang === "pt" ? "Técnico Certificado" : lang === "en" ? "Certified Technical" : "Technique Certifié"}
+                </span>
               </div>
             </motion.div>
           </div>
@@ -220,24 +254,27 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
               <div className="grid grid-cols-3 gap-2 relative z-10">
                 <div className="bg-black/40 border border-[#222222] p-2.5 rounded hover:border-[#C28D35]/30 transition-all duration-300">
                   <div className="flex items-center gap-1.5 text-[#C28D35] mb-1">
-                    <Eye className="w-3.5 h-3.5" />
                     <span className="font-display text-[9px] font-bold uppercase">CCTV</span>
                   </div>
-                  <span className="font-mono text-[8px] text-gray-400">Ativo / Seguro</span>
+                  <span className="font-mono text-[8px] text-gray-400">
+                    {lang === "pt" ? "Ativo / Seguro" : lang === "en" ? "Active / Safe" : "Actif / Sécurisé"}
+                  </span>
                 </div>
 
                 <div className="bg-black/40 border border-[#222222] p-2.5 rounded hover:border-[#C28D35]/30 transition-all duration-300">
                   <div className="flex items-center gap-1.5 text-[#C28D35] mb-1">
-                    <Key className="w-3.5 h-3.5" />
-                    <span className="font-display text-[9px] font-bold uppercase">Acesso</span>
+                    <span className="font-display text-[9px] font-bold uppercase">
+                      {lang === "pt" ? "Acesso" : lang === "en" ? "Access" : "Accès"}
+                    </span>
                   </div>
                   <span className="font-mono text-[8px] text-gray-400">Biométrico OK</span>
                 </div>
 
                 <div className="bg-black/40 border border-[#222222] p-2.5 rounded hover:border-[#C28D35]/30 transition-all duration-300">
                   <div className="flex items-center gap-1.5 text-[#C28D35] mb-1">
-                    <Cpu className="w-3.5 h-3.5" />
-                    <span className="font-display text-[9px] font-bold uppercase">Automação</span>
+                    <span className="font-display text-[9px] font-bold uppercase">
+                      {lang === "pt" ? "Automação" : lang === "en" ? "Automation" : "Automatisme"}
+                    </span>
                   </div>
                   <span className="font-mono text-[8px] text-gray-400">Portões_Aptos</span>
                 </div>

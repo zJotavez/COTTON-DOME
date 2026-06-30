@@ -1,8 +1,37 @@
 import React from "react";
 import { motion } from "motion/react";
-import { TIMELINE_STEPS } from "../data";
+import { TRANSLATIONS } from "../translations";
 
-export function HowWeWork() {
+interface HowWeWorkProps {
+  lang?: "pt" | "en" | "fr";
+}
+
+export function HowWeWork({ lang = "pt" }: HowWeWorkProps) {
+  const t = TRANSLATIONS[lang];
+
+  const steps = [
+    {
+      stepNumber: "01",
+      title: t.howWeWork.steps.step1Title,
+      description: t.howWeWork.steps.step1Desc
+    },
+    {
+      stepNumber: "02",
+      title: t.howWeWork.steps.step2Title,
+      description: t.howWeWork.steps.step2Desc
+    },
+    {
+      stepNumber: "03",
+      title: t.howWeWork.steps.step3Title,
+      description: t.howWeWork.steps.step3Desc
+    },
+    {
+      stepNumber: "04",
+      title: t.howWeWork.steps.step4Title,
+      description: t.howWeWork.steps.step4Desc
+    }
+  ];
+
   return (
     <section className="py-24 bg-[#050505] relative overflow-hidden border-t border-[#1a1a1a]">
       {/* Background Video */}
@@ -36,7 +65,7 @@ export function HowWeWork() {
             viewport={{ once: true }}
             className="font-mono text-xs uppercase tracking-widest text-[#E2AF55] mb-3"
           >
-            Metodologia de Rigor
+            {t.howWeWork.tag}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
@@ -44,7 +73,7 @@ export function HowWeWork() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight mb-4"
           >
-            Como trabalhamos
+            {t.howWeWork.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -52,7 +81,7 @@ export function HowWeWork() {
             viewport={{ once: true }}
             className="text-sm sm:text-base text-[#D9D9D9] font-sans leading-relaxed"
           >
-            Garantimos uma experiência segura e transparente em todas as fases do projeto. Desde o primeiro contacto técnico até à manutenção das soluções instaladas.
+            {t.howWeWork.subtitle}
           </motion.p>
         </div>
 
@@ -62,7 +91,7 @@ export function HowWeWork() {
           <div className="hidden lg:block absolute top-1/2 left-4 right-4 h-[1px] bg-gradient-to-r from-transparent via-[#E2AF55]/30 to-transparent -translate-y-1/2 z-0 pointer-events-none"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 relative z-10">
-            {TIMELINE_STEPS.map((step, idx) => (
+            {steps.map((step, idx) => (
               <motion.div
                 key={step.stepNumber}
                 initial={{ opacity: 0, y: 30 }}

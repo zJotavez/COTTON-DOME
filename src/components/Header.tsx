@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Phone, ArrowLeft } from "lucide-react";
-import { CONTACT_INFO } from "../data";
+import { Menu, X, ArrowLeft } from "lucide-react";
+import { TRANSLATIONS } from "../translations";
 
 interface HeaderProps {
   onQuoteClick: () => void;
   onNavigate: (path: string) => void;
   currentPath: string;
   logo?: string;
+  lang?: "pt" | "en" | "fr";
 }
 
-export function Header({ onQuoteClick, onNavigate, currentPath, logo }: HeaderProps) {
+export function Header({ onQuoteClick, onNavigate, currentPath, logo, lang = "pt" }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const t = TRANSLATIONS[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,17 +30,19 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo }: HeaderPr
   }, []);
 
   const navLinks = [
-    { name: "Início", href: "#home" },
-    { name: "Soluções", href: "#solucoes" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Contacto", href: "#contacto" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.solutions, href: "#solucoes" },
+    { name: t.nav.equipments, href: "#equipamentos" },
+    { name: t.nav.projects, href: "#projetos" },
+    { name: t.nav.contact, href: "#contacto" },
   ];
 
   const mobileNavLinks = [
-    { name: "Início", href: "#home" },
-    { name: "Soluções", href: "#solucoes" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Contacto", href: "#contacto" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.solutions, href: "#solucoes" },
+    { name: t.nav.equipments, href: "#equipamentos" },
+    { name: t.nav.projects, href: "#projetos" },
+    { name: t.nav.contact, href: "#contacto" },
   ];
 
   const isServicePage = currentPath.startsWith("/servicos/");
@@ -79,7 +84,7 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo }: HeaderPr
                 className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-[#C28D35]/50 bg-[#111111]/80 hover:bg-[#111111] text-xs font-display font-bold uppercase tracking-wider text-[#CFCFCF] hover:text-[#C28D35] rounded transition-all cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>Voltar para a Home</span>
+                <span>{t.nav.backToHome}</span>
               </button>
             ) : (
               <a 
@@ -125,7 +130,7 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo }: HeaderPr
                 onClick={onQuoteClick}
                 className="px-6 py-2.5 btn-gold-premium rounded text-[11px] font-bold uppercase tracking-widest cursor-pointer"
               >
-                Solicitar Orçamento
+                {t.nav.requestQuote}
               </button>
             </div>
 
@@ -176,7 +181,7 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo }: HeaderPr
                 }}
                 className="w-full btn-gold-premium font-display font-extrabold uppercase tracking-widest py-3.5 rounded text-xs text-center cursor-pointer"
               >
-                Solicitar Orçamento
+                {t.nav.requestQuote}
               </button>
             </div>
           </motion.div>
