@@ -18,7 +18,8 @@ export function Hero({ onQuoteClick, onExploreClick, content }: HeroProps) {
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    return `${API_BASE}/${url}`;
+    const cleanUrl = url.replace(/^\//, '');
+    return `${API_BASE}/${cleanUrl}`;
   };
 
   const heroTitle = content?.hero_title || "Segurança Inteligente para Residências, Empresas e Condomínios";

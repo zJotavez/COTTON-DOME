@@ -76,7 +76,8 @@ export function ServiceDetail({ slug, onNavigate, services, pages }: ServiceDeta
   const mainDesc = pageDetails?.description || service.description || "";
   const benefits = parseJsonArray(pageDetails?.benefits, (service as any).benefits || []);
   const products = parseJsonArray(pageDetails?.products, (service as any).products || []);
-  const galleryImages = parseJsonArray(pageDetails?.gallery_images, (service as any).galleryImages || []);
+  const staticService = SERVICES_DATA.find((s) => s.slug === slug);
+  const galleryImages = parseJsonArray(pageDetails?.gallery_images, staticService?.galleryImages || []);
 
   const defaultWorkSteps = [
     { num: "01", title: "Análise Técnica", desc: "Avaliamos minuciosamente o espaço físico e compreendemos a sua necessidade de segurança." },
@@ -97,13 +98,13 @@ export function ServiceDetail({ slug, onNavigate, services, pages }: ServiceDeta
 
   const appLocations = parseJsonArray(pageDetails?.applications, defaultAppLocations);
 
-  // Resolve media URLs
   const resolveMediaUrl = (url: string | undefined, defaultUrl: string) => {
     if (!url) return defaultUrl;
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    return `${API_BASE}/${url}`;
+    const cleanUrl = url.replace(/^\//, '');
+    return `${API_BASE}/${cleanUrl}`;
   };
 
   const mainImage = resolveMediaUrl(service.image, "");

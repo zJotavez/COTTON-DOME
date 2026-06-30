@@ -23,7 +23,8 @@ export function About({ content }: AboutProps) {
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    return `${API_BASE}/${url}`;
+    const cleanUrl = url.replace(/^\//, '');
+    return `${API_BASE}/${cleanUrl}`;
   };
 
   const aboutTitle = content?.title || "Sobre a Cotton Dome LDA";

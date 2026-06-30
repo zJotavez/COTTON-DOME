@@ -22,7 +22,8 @@ export function Solutions({ onNavigate, services }: SolutionsProps) {
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    return `${API_BASE}/${url}`;
+    const cleanUrl = url.replace(/^\//, '');
+    return `${API_BASE}/${cleanUrl}`;
   };
 
   return (

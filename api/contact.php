@@ -45,10 +45,9 @@ try {
         'message' => $message
     ]);
 
-    // 2. Fetch destination email from settings
-    $settingsStmt = $pdo->query("SELECT email, company_name FROM site_settings LIMIT 1");
+    $settingsStmt = $pdo->query("SELECT company_name FROM site_settings LIMIT 1");
     $settings = $settingsStmt->fetch();
-    $toEmail = ($settings && !empty($settings['email'])) ? $settings['email'] : 'suporte@domme.pt';
+    $toEmail = 'suporte@domme.pt';
     $companyName = ($settings && !empty($settings['company_name'])) ? $settings['company_name'] : 'Cotton Dome LDA';
 
     // 3. Send Notification Email via PHP mail()
