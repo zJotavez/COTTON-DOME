@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Send, Bot, ChevronDown, Minimize2 } from "lucide-react";
+import { X, Send, ChevronDown } from "lucide-react";
 
 interface ChatBotProps {
   lang: "pt" | "en" | "fr";
@@ -12,178 +12,178 @@ interface Message {
   text: string;
 }
 
-// ─── FAQ Knowledge Base ───────────────────────────────────────────────────────
+// ─── FAQ Knowledge Base (Friendly Conversational Tone & WhatsApp Links) ────────
 const FAQ: Record<"pt" | "en" | "fr", { triggers: string[]; answer: string }[]> = {
   pt: [
     {
       triggers: ["ola", "olá", "bom dia", "boa tarde", "boa noite", "hello", "oi", "oi!"],
-      answer: "Olá! 👋 Sou o assistente virtual da Cotton Dome LDA. Posso ajudá-lo com informações sobre os nossos serviços de segurança, orçamentos e instalações. Como posso ajudar?"
+      answer: "Olá! Tudo bem? 😊 Sou a assistente virtual da **Cotton Dome LDA**.\n\nEstou aqui para ajudar com qualquer dúvida sobre os nossos sistemas de segurança (CCTV, Alarmes, Acessos), orçamentos ou suporte técnico. Como posso tornar o seu dia mais seguro hoje?"
     },
     {
       triggers: ["cctv", "camera", "câmera", "câmara", "videovigilância", "vigilancia", "vigilância"],
-      answer: "📷 Os nossos sistemas de **CCTV e Videovigilância** incluem câmeras IP e analógicas de alta definição com IA integrada para deteção de pessoas e veículos. Monitore o seu espaço de qualquer parte do mundo via app móvel. Quer solicitar um orçamento?"
+      answer: "📷 Os nossos sistemas de **CCTV e Videovigilância** incluem câmaras IP e analógicas de alta definição com IA integrada para deteção inteligente de pessoas e veículos. Pode monitorizar tudo em tempo real diretamente no seu telemóvel via app!\n\nQuer receber um estudo gratuito para o seu espaço? Fale diretamente connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788) ou pergunte-me mais detalhes!"
     },
     {
       triggers: ["alarme", "intrusao", "intrusão", "sensor", "sirene", "intruso"],
-      answer: "🚨 Os nossos **Sistemas de Alarme e Intrusão** protegem o seu espaço com sensores de movimento, sensores magnéticos, sirenes de alto impacto e centrais conectadas por GSM/Wi-Fi. Receba alertas imediatos no seu telemóvel. Deseja mais informações?"
+      answer: "🚨 Os nossos **Sistemas de Alarme e Intrusão** protegem o seu espaço com sensores de movimento avançados, sensores magnéticos, sirenes de alto impacto e centrais conectadas por GSM/Wi-Fi. Receba alertas imediatos no seu telemóvel sempre que algo acontecer!\n\nQuer proteger a sua casa ou empresa? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["acesso", "acessos", "biometria", "facial", "rfid", "cartao", "cartão", "torniquete", "catraca", "fechadura"],
-      answer: "🔐 O nosso serviço de **Controlo de Acessos** cobre desde fechaduras eletrónicas até reconhecimento facial, biometria, cartões RFID e torniquetes. Ideal para empresas, condomínios e indústrias. Quer saber mais?"
+      answer: "🔐 O nosso serviço de **Controlo de Acessos** cobre desde fechaduras eletrónicas inteligentes até reconhecimento facial, biometria, cartões RFID e torniquetes. Ideal para empresas, condomínios e moradias que procuram segurança máxima.\n\nQuer saber qual a melhor opção para si? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["incendio", "incêndio", "fogo", "fumo", "detetor", "detector"],
-      answer: "🔥 Os nossos **Sistemas de Deteção de Incêndio** incluem detetores óticos de fumo, detetores térmicos, centrais de incêndio e sistemas de evacuação. Cumpre todas as normas europeias de segurança contra incêndio."
+      answer: "🔥 Os nossos **Sistemas de Deteção de Incêndio** incluem detetores óticos de fumo e calor, centrais de incêndio inteligentes e sistemas de evacuação rápida, em total conformidade com as normas europeias.\n\nQuer fazer um projeto de segurança contra incêndios? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["portao", "portão", "automatismo", "automacao", "automação", "motor", "barreira"],
-      answer: "🚗 Instalamos **Automatismos para Portões** de correr e batente, barreiras automáticas e sistemas de abertura remota por app. Ideal para residências, condomínios e empresas. Posso agendar uma visita técnica?"
+      answer: "🚗 Instalamos **Automatismos para Portões** de correr e batente, barreiras automáticas e sistemas de abertura remota por telemóvel. Ideal para o seu conforto e segurança ao chegar a casa!\n\nQuer automatizar o seu portão? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["rede", "redes", "wifi", "wi-fi", "cabo", "cabeamento", "switch", "router"],
-      answer: "🌐 As nossas **Soluções de Redes** incluem cabeamento estruturado, racks, switches PoE, routers e Wi-Fi profissional. Essenciais para o funcionamento dos sistemas de segurança e comunicação."
+      answer: "🌐 As nossas **Soluções de Redes** incluem cablagem estruturada profissional, racks, switches PoE, routers e Wi-Fi de alta performance para garantir que os seus sistemas de segurança e comunicação nunca falhem.\n\nPrecisa de melhorar a conectividade da sua empresa? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["ups", "energia", "bateria", "backup", "eletricidade", "corrente"],
-      answer: "⚡ Os nossos **Sistemas UPS e Energia de Backup** garantem que câmeras, alarmes e redes continuem a funcionar mesmo durante cortes de energia. Proteção total 24/7."
+      answer: "⚡ Os nossos **Sistemas UPS e Energia de Backup** garantem que câmaras, alarmes e internet continuem a funcionar mesmo durante cortes de energia. Proteção contínua 24/7!\n\nQuer garantir que a sua segurança nunca se desliga? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["telecomunicacao", "telecomunicação", "telecomunicacoes", "comunicacao", "comunicação", "intercom"],
-      answer: "📡 As nossas **Soluções de Telecomunicações** incluem infraestrutura técnica, pontos de comunicação, antenas e integração de sistemas para ambientes modernos e conectados."
+      answer: "📡 As nossas **Soluções de Telecomunicações** e vídeo porteiros garantem uma comunicação clara e segura entre os acessos e o interior do seu edifício ou empresa.\n\nQuer modernizar a sua intercomunicação? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["preco", "preço", "custo", "valor", "orcamento", "orçamento", "quanto custa"],
-      answer: "💰 Os nossos preços variam consoante o projeto e as necessidades específicas do cliente. Fazemos **orçamentos gratuitos e personalizados**. Pode contactar-nos pelo WhatsApp (+351 918 880 788) ou preencher o formulário de contacto no site."
+      answer: "💰 Fazemos **orçamentos 100% gratuitos e personalizados** para cada cliente, já que cada projeto de segurança é único!\n\nPara receber um orçamento rápido e sem compromisso, fale connosco agora pelo [WhatsApp clicando aqui](https://wa.me/351918880788) ou preencha o formulário de contacto no final da nossa página."
     },
     {
       triggers: ["contacto", "contato", "falar", "ligar", "telefone", "whatsapp", "email"],
-      answer: "📞 Pode contactar a Cotton Dome LDA:\n\n📱 **Telefone:** +351 918 880 788\n💬 **WhatsApp:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Segunda a Sexta: 09h–18h30\nSábado (Urgências): 09h–13h"
+      answer: "📞 Pode contactar a Cotton Dome LDA de forma muito fácil:\n\n💬 **WhatsApp:** [Iniciar conversa no WhatsApp](https://wa.me/351918880788)\n📱 **Telefone:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Segunda a Sexta: 09h–18h30 | Sábado (Urgências): 09h–13h\n\nComo prefere falar connosco?"
     },
     {
       triggers: ["horario", "horário", "funcionamento", "aberto", "trabalho"],
-      answer: "⏰ O nosso horário de funcionamento:\n\n🗓️ **Segunda a Sexta-feira:** 09:00h às 18:30h\n🗓️ **Sábado (Urgências):** 09:00h às 13:00h"
+      answer: "⏰ O nosso horário de funcionamento é:\n\n🗓️ **Segunda a Sexta-feira:** 09:00h às 18:30h\n🗓️ **Sábado (Urgências):** 09:00h às 13:00h\n\nSe precisar de ajuda urgente fora deste horário, envie-nos uma mensagem pelo [WhatsApp clicando aqui](https://wa.me/351918880788)!"
     },
     {
       triggers: ["onde", "localizacao", "localização", "portugal", "sede", "morada", "endereco", "endereço"],
-      answer: "📍 A Cotton Dome LDA está sediada em **Portugal**, prestando serviços em todo o território nacional. Contacte-nos para agendar uma visita técnica gratuita ao seu espaço."
+      answer: "📍 A Cotton Dome LDA está sediada em **Portugal**, e prestamos serviços em todo o território nacional.\n\nQuer agendar uma visita técnica gratuita ao seu espaço? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)!"
     },
     {
       triggers: ["garantia", "manutencao", "manutenção", "suporte", "assistencia", "assistência"],
-      answer: "🛡️ Todos os nossos projetos incluem **garantia de instalação** e suporte técnico dedicado. Trabalhamos com marcas homologadas e equipamentos com garantia de fábrica. O nosso serviço pós-venda está disponível para qualquer necessidade."
+      answer: "🛡️ Todos os nossos projetos incluem **garantia de instalação** e suporte pós-venda dedicado. Se precisar de assistência técnica ou manutenção preventiva, a forma mais rápida é falar connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)!"
     },
     {
       triggers: ["servico", "serviço", "servicos", "serviços", "solucao", "solução", "o que fazem", "o que fazeis"],
-      answer: "🏢 A Cotton Dome LDA oferece soluções completas em:\n\n📷 CCTV e Videovigilância\n🚨 Sistemas de Alarme\n🔐 Controlo de Acessos\n🔥 Deteção de Incêndio\n🚗 Automatismos\n🌐 Redes\n⚡ UPS e Energia\n📡 Telecomunicações\n\nQual serviço lhe interessa?"
+      answer: "🏢 Oferecemos soluções completas em:\n\n📷 CCTV e Videovigilância\n🚨 Sistemas de Alarme\n🔐 Controlo de Acessos\n🔥 Deteção de Incêndio\n🚗 Automatismos para Portões\n🌐 Redes de Comunicação\n⚡ UPS e Energia de Backup\n📡 Telecomunicações\n\nQual destas áreas gostaria de proteger hoje? Fale connosco pelo [WhatsApp clicando aqui](https://wa.me/351918880788)."
     },
     {
       triggers: ["obrigado", "obrigada", "ok", "perfeito", "ótimo", "otimo", "fixe", "muito bem"],
-      answer: "😊 Fico feliz em ajudar! Se tiver mais alguma dúvida ou quiser solicitar um orçamento, estou aqui. A Cotton Dome LDA tem toda a atenção para o seu projeto de segurança."
+      answer: "😊 Fico muito feliz em ajudar! Se precisar de mais alguma coisa ou quiser avançar com o seu projeto, estou por aqui. Tenha um excelente dia com toda a segurança!"
     }
   ],
   en: [
     {
       triggers: ["hello", "hi", "hey", "good morning", "good afternoon"],
-      answer: "Hello! 👋 I'm the Cotton Dome LDA virtual assistant. I can help you with information about our security services, quotes and installations. How can I help you?"
+      answer: "Hello! 😊 I'm the **Cotton Dome LDA** virtual assistant.\n\nI'm here to help you with any questions about our security systems (CCTV, Alarms, Access Control), quotes or technical support. How can I help make your day safer today?"
     },
     {
       triggers: ["cctv", "camera", "video", "surveillance", "monitoring"],
-      answer: "📷 Our **CCTV & Video Surveillance** systems include high-definition IP and analog cameras with AI for detecting people and vehicles. Monitor your space from anywhere via mobile app. Would you like to request a quote?"
+      answer: "📷 Our **CCTV & Video Surveillance** systems feature high-definition IP and analog cameras with built-in AI for smart detection of people and vehicles. You can monitor everything in real time from your mobile phone!\n\nWould you like a free security study for your property? Chat with us directly on [WhatsApp by clicking here](https://wa.me/351918880788)!"
     },
     {
       triggers: ["alarm", "intrusion", "sensor", "siren", "motion"],
-      answer: "🚨 Our **Alarm & Intrusion Systems** protect your space with motion sensors, magnetic contacts, high-impact sirens and GSM/Wi-Fi connected panels. Receive instant alerts on your phone. Want more information?"
+      answer: "🚨 Our **Alarm & Intrusion Systems** protect your home or business with advanced motion sensors, magnetic contacts, loud sirens, and GSM/Wi-Fi connected panels. Get instant alerts on your phone!\n\nWant to protect your space? Chat with us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["access", "biometric", "facial", "rfid", "card", "turnstile", "lock"],
-      answer: "🔐 Our **Access Control** service covers electronic locks, facial recognition, biometrics, RFID cards and turnstiles. Ideal for businesses, condominiums and industries."
+      answer: "🔐 Our **Access Control** services range from smart electronic locks to facial recognition, biometrics, RFID cards, and turnstiles. Ideal for businesses and residential communities.\n\nWant to find the best option for you? Contact us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["fire", "smoke", "detection", "detector"],
-      answer: "🔥 Our **Fire Detection Systems** include optical smoke detectors, heat detectors, fire panels and evacuation systems. Complies with all European fire safety standards."
+      answer: "🔥 Our **Fire Detection Systems** include smart optical smoke and heat detectors, alarm panels, and evacuation systems, fully compliant with European safety standards.\n\nNeed a fire safety plan? Contact us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["gate", "automation", "motor", "barrier", "automatic"],
-      answer: "🚗 We install **Gate Automation** for sliding and swing gates, automatic barriers and remote app opening systems. Ideal for residences, condominiums and businesses."
+      answer: "🚗 We install high-quality **Gate Automation** for sliding and swing gates, automatic barriers, and smart remote opening systems via mobile app.\n\nWant to automate your gate? Get in touch on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["network", "wifi", "cable", "cabling", "switch", "router"],
-      answer: "🌐 Our **Network Solutions** include structured cabling, racks, PoE switches, routers and professional Wi-Fi. Essential for security and communication systems."
+      answer: "🌐 Our **Network Solutions** include professional structured cabling, server racks, PoE switches, routers, and high-performance Wi-Fi to ensure your security and communication systems never fail.\n\nNeed to upgrade your network? Contact us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["ups", "energy", "battery", "backup", "power"],
-      answer: "⚡ Our **UPS & Backup Energy Systems** ensure cameras, alarms and networks continue working even during power outages. Total 24/7 protection."
+      answer: "⚡ Our **UPS & Backup Power Systems** keep your cameras, alarms, and networks running smoothly even during power cuts. 24/7 continuous protection!\n\nWant to ensure your security never goes offline? Contact us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     },
     {
       triggers: ["price", "cost", "quote", "budget", "how much"],
-      answer: "💰 Our prices vary according to the project and specific client needs. We offer **free personalized quotes**. Contact us via WhatsApp (+351 918 880 788) or fill out the contact form on the website."
+      answer: "💰 We offer **100% free personalized quotes** tailored specifically to your project and security needs.\n\nTo get a quick estimate, message us directly on [WhatsApp by clicking here](https://wa.me/351918880788) or fill out the contact form below!"
     },
     {
       triggers: ["contact", "phone", "whatsapp", "email", "call"],
-      answer: "📞 Contact Cotton Dome LDA:\n\n📱 **Phone:** +351 918 880 788\n💬 **WhatsApp:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Mon–Fri: 9am–6:30pm\nSaturday (Emergencies): 9am–1pm"
+      answer: "📞 You can easily get in touch with us:\n\n💬 **WhatsApp:** [Message us on WhatsApp](https://wa.me/351918880788)\n📱 **Phone:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Mon–Fri: 9:00 AM – 6:30 PM | Saturday (Emergencies): 9:00 AM – 1:00 PM\n\nLooking forward to hearing from you!"
     },
     {
       triggers: ["thank", "thanks", "ok", "great", "perfect", "good"],
-      answer: "😊 Happy to help! If you have any more questions or would like to request a quote, I'm here. Cotton Dome LDA is fully dedicated to your security project."
+      answer: "😊 Happy to help! If you have any other questions or want to start your project, I'm here. Have a safe and wonderful day!"
     },
     {
       triggers: ["service", "services", "what do you do", "solutions"],
-      answer: "🏢 Cotton Dome LDA offers complete solutions in:\n\n📷 CCTV & Video Surveillance\n🚨 Alarm Systems\n🔐 Access Control\n🔥 Fire Detection\n🚗 Automation\n🌐 Networks\n⚡ UPS & Energy\n📡 Telecoms\n\nWhich service interests you?"
+      answer: "🏢 Cotton Dome LDA offers complete solutions in:\n\n📷 CCTV & Video Surveillance\n🚨 Alarm Systems\n🔐 Access Control\n🔥 Fire Detection\n🚗 Gate Automation\n🌐 Networks & Wi-Fi\n⚡ UPS & Power Backup\n📡 Telecommunications\n\nWhich service interests you? Contact us on [WhatsApp by clicking here](https://wa.me/351918880788)."
     }
   ],
   fr: [
     {
       triggers: ["bonjour", "bonsoir", "salut", "hello", "bonne journee"],
-      answer: "Bonjour! 👋 Je suis l'assistant virtuel de Cotton Dome LDA. Je peux vous aider avec des informations sur nos services de sécurité, devis et installations. Comment puis-je vous aider?"
+      answer: "Bonjour! 😊 Je suis l'assistant virtuel de **Cotton Dome LDA**.\n\nJe suis là pour vous aider avec toutes vos questions sur nos systèmes de sécurité (CCTV, Alarmes, Contrôle d'accès), devis ou support technique. Comment puis-je vous aider aujourd'hui?"
     },
     {
       triggers: ["cctv", "camera", "vidéo", "surveillance", "monitoring"],
-      answer: "📷 Nos systèmes de **CCTV et Vidéosurveillance** comprennent des caméras IP et analogiques haute définition avec IA pour détecter personnes et véhicules. Surveillez votre espace depuis n'importe où via app mobile."
+      answer: "📷 Nos systèmes de **CCTV et Vidéosurveillance** comprennent des caméras IP et analogiques HD avec IA intégrée pour la détection intelligente des personnes et des véhicules. Surveillez tout en temps réel sur votre mobile!\n\nSouhaitez-vous une étude de sécurité gratuite? Contactez-nous directement sur [WhatsApp en cliquant ici](https://wa.me/351918880788)!"
     },
     {
       triggers: ["alarme", "intrusion", "capteur", "sirène", "mouvement"],
-      answer: "🚨 Nos **Systèmes d'Alarme et Intrusion** protègent votre espace avec capteurs de mouvement, contacts magnétiques, sirènes haute puissance et centrales connectées GSM/Wi-Fi. Recevez des alertes instantanées sur votre téléphone."
+      answer: "🚨 Nos **Systèmes d'Alarme et d'Intrusion** protègent votre maison ou entreprise avec des détecteurs de mouvement avancés, contacts magnétiques, sirènes puissantes et centrales connectées GSM/Wi-Fi.\n\nPour sécuriser votre espace, contactez-nous sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
     },
     {
-      triggers: ["accès", "acces", "biométrie", "facial", "rfid", "carte", "badge"],
-      answer: "🔐 Notre service de **Contrôle d'Accès** couvre les serrures électroniques, la reconnaissance faciale, la biométrie, les cartes RFID et les tourniquets. Idéal pour les entreprises, copropriétés et industries."
+      triggers: ["accès", "acces", "biométrie", "facial", "rfid", "carte", "badge", "tourniquet", "serrure"],
+      answer: "🔐 Notre service de **Contrôle d'Accès** va des serrures électroniques au reconnaissance faciale, biométrie, cartes RFID et tourniquets. Idéal pour les entreprises et les copropriétés.\n\nTrouvez la meilleure solution sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
     },
     {
       triggers: ["incendie", "fumée", "feu", "détecteur", "detecteur"],
-      answer: "🔥 Nos **Systèmes de Détection Incendie** incluent détecteurs optiques de fumée, détecteurs thermiques, centrales incendie et systèmes d'évacuation. Conforme à toutes les normes européennes."
+      answer: "🔥 Nos **Systèmes de Détection Incendie** comprennent des détecteurs de fumée et de chaleur, des centrales d'alarme et des systèmes d'évacuation conformes aux normes de sécurité européennes.\n\nBesoin d'un projet incendie? Contactez-nous sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
     },
     {
       triggers: ["portail", "barrière", "automatisme", "moteur", "automatique"],
-      answer: "🚗 Nous installons des **Automatismes de Portails** coulissants et battants, barrières automatiques et systèmes d'ouverture à distance via app. Idéal pour résidences, copropriétés et entreprises."
+      answer: "🚗 Nous installons des **Automatismes de Portail** coulissants et battants, barrières automatiques et systèmes d'ouverture à distance via smartphone.\n\nAutomatisez votre portail en nous contactant sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
     },
     {
       triggers: ["prix", "coût", "devis", "tarif", "combien"],
-      answer: "💰 Nos prix varient selon le projet et les besoins spécifiques du client. Nous proposons des **devis gratuits et personnalisés**. Contactez-nous via WhatsApp (+351 918 880 788) ou remplissez le formulaire de contact."
+      answer: "💰 Nous proposons des **devis 100% gratuits et personnalisés** adaptés à chaque projet de sécurité.\n\nPour obtenir un devis rapide, contactez-nous sur [WhatsApp en cliquant ici](https://wa.me/351918880788)!"
     },
     {
       triggers: ["contact", "téléphone", "whatsapp", "email", "appeler"],
-      answer: "📞 Contactez Cotton Dome LDA:\n\n📱 **Téléphone:** +351 918 880 788\n💬 **WhatsApp:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Lun–Ven: 9h–18h30\nSamedi (Urgences): 9h–13h"
+      answer: "📞 Contactez facilement Cotton Dome LDA:\n\n💬 **WhatsApp:** [Envoyer un message WhatsApp](https://wa.me/351918880788)\n📱 **Téléphone:** +351 918 880 788\n📧 **Email:** suporte@domme.pt\n\n⏰ Lun–Ven: 9h–18h30 | Samedi (Urgences): 9h–13h\n\nÀ votre écoute!"
     },
     {
       triggers: ["merci", "ok", "parfait", "super", "bien"],
-      answer: "😊 Heureux de vous aider! Si vous avez d'autres questions ou souhaitez demander un devis, je suis là. Cotton Dome LDA est entièrement dédiée à votre projet de sécurité."
+      answer: "😊 Ravi de vous aider! Si vous avez d'autres questions ou souhaitez lancer votre projet, je suis là. Passez une excellente journée en toute sécurité!"
     },
     {
       triggers: ["service", "services", "que faites", "solutions"],
-      answer: "🏢 Cotton Dome LDA offre des solutions complètes en:\n\n📷 CCTV & Vidéosurveillance\n🚨 Systèmes d'Alarme\n🔐 Contrôle d'Accès\n🔥 Détection Incendie\n🚗 Automatismes\n🌐 Réseaux\n⚡ UPS & Énergie\n📡 Télécommunications\n\nQuel service vous intéresse?"
+      answer: "🏢 Cotton Dome LDA propose des solutions complètes en:\n\n📷 CCTV & Vidéosurveillance\n🚨 Systèmes d'Alarme\n🔐 Contrôle d'Accès\n🔥 Détection Incendie\n🚗 Automatismes\n🌐 Réseaux & Wi-Fi\n⚡ UPS & Alimentation de Secours\n📡 Télécommunications\n\nQuel service vous intéresse? Contactez-nous sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
     }
   ]
 };
 
 const GREETINGS: Record<"pt" | "en" | "fr", string> = {
-  pt: "Olá! 👋 Sou o assistente virtual da **Cotton Dome LDA**.\n\nPosso ajudá-lo com informações sobre os nossos serviços de segurança, orçamentos e muito mais. Como posso ajudar?",
-  en: "Hello! 👋 I'm the **Cotton Dome LDA** virtual assistant.\n\nI can help you with information about our security services, quotes and much more. How can I help?",
-  fr: "Bonjour! 👋 Je suis l'assistant virtuel de **Cotton Dome LDA**.\n\nJe peux vous aider avec des informations sur nos services de sécurité, devis et bien plus encore. Comment puis-je vous aider?"
+  pt: "Olá! Tudo bem? 😊 Sou a assistente virtual da **Cotton Dome LDA**.\n\nEstou aqui para responder às suas dúvidas sobre segurança, alarmes, CCTV e automatismos. Como o posso ajudar hoje?",
+  en: "Hello! 😊 I'm the **Cotton Dome LDA** virtual assistant.\n\nI can help you with information about our security systems, alarm setups, and quotes. How can I help you today?",
+  fr: "Bonjour! 😊 Je suis l'assistant virtuel de **Cotton Dome LDA**.\n\nJe suis à votre disposition pour toute information sur nos solutions de sécurité et devis. Comment puis-je vous aider aujourd'hui?"
 };
 
 const DEFAULT_ANSWERS: Record<"pt" | "en" | "fr", string> = {
-  pt: "Peço desculpa, não compreendi totalmente a sua questão. Posso ajudá-lo com informações sobre os nossos serviços:\n\n📷 CCTV • 🚨 Alarmes • 🔐 Acessos • 🔥 Incêndio • 🚗 Automatismos • 🌐 Redes • ⚡ UPS\n\nOu pode contactar-nos diretamente pelo WhatsApp: **+351 918 880 788**",
-  en: "Sorry, I didn't quite understand your question. I can help you with information about our services:\n\n📷 CCTV • 🚨 Alarms • 🔐 Access • 🔥 Fire • 🚗 Automation • 🌐 Networks • ⚡ UPS\n\nOr contact us directly on WhatsApp: **+351 918 880 788**",
-  fr: "Désolé, je n'ai pas bien compris votre question. Je peux vous aider avec nos services:\n\n📷 CCTV • 🚨 Alarmes • 🔐 Accès • 🔥 Incendie • 🚗 Automatismes • 🌐 Réseaux • ⚡ UPS\n\nOu contactez-nous directement sur WhatsApp: **+351 918 880 788**"
+  pt: "Peço desculpa, não compreendi totalmente a sua questão. Posso ajudar com informações sobre os nossos serviços (CCTV, Alarmes, Acessos, Incêndio, Automatismos, Redes, UPS) ou se preferir, pode falar diretamente connosco através do [WhatsApp clicando aqui](https://wa.me/351918880788).",
+  en: "Sorry, I didn't quite understand your question. I can help with information about our services (CCTV, Alarms, Access, Fire, Automation, Networks, UPS) or if you prefer, you can talk to us directly on [WhatsApp by clicking here](https://wa.me/351918880788).",
+  fr: "Désolé, je n'ai pas bien compris votre question. Je peux vous aider avec des informations sur nos services (CCTV, Alarmes, Accès, Incendie, Automatismes, Réseaux, UPS) ou vous pouvez nous contacter directement sur [WhatsApp en cliquant ici](https://wa.me/351918880788)."
 };
 
 const PLACEHOLDER: Record<"pt" | "en" | "fr", string> = {
@@ -222,16 +222,37 @@ function getBotAnswer(input: string, lang: "pt" | "en" | "fr"): string {
   return DEFAULT_ANSWERS[lang];
 }
 
-// ─── Render Markdown-like text ────────────────────────────────────────────────
+// ─── Render Markdown-like text (Supporting Bold and Clickable Markdown Links) ──
 function renderText(text: string) {
   const lines = text.split("\n");
   return lines.map((line, i) => {
-    const parts = line.split(/(\*\*[^*]+\*\*)/g);
+    const parts = line.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
     return (
       <span key={i}>
         {parts.map((part, j) => {
           if (part.startsWith("**") && part.endsWith("**")) {
-            return <strong key={j} className="font-bold text-[#E2AF55]">{part.slice(2, -2)}</strong>;
+            return (
+              <strong key={j} className="font-bold text-[#E2AF55]">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          if (part.startsWith("[") && part.includes("](")) {
+            const match = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
+            if (match) {
+              const [_, label, url] = match;
+              return (
+                <a
+                  key={j}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[#E2AF55] hover:text-[#C28D35] underline font-semibold transition-colors"
+                >
+                  {label}
+                </a>
+              );
+            }
           }
           return <span key={j}>{part}</span>;
         })}
@@ -308,7 +329,7 @@ export function ChatBot({ lang }: ChatBotProps) {
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Abrir chat de suporte / Open support chat"
-          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#C28D35] to-[#A07020] shadow-[0_4px_20px_rgba(194,141,53,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#C28D35] to-[#A07020] shadow-[0_4px_20px_rgba(194,141,53,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden"
         >
           {/* Ping animation when closed */}
           {!isOpen && (
@@ -320,14 +341,14 @@ export function ChatBot({ lang }: ChatBotProps) {
                 <ChevronDown className="w-6 h-6 text-white" />
               </motion.div>
             ) : (
-              <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <Bot className="w-6 h-6 text-white" />
+              <motion.div key="open" className="w-full h-full flex items-center justify-center" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <img src="/images/agent-avatar.png" alt="Suporte" className="w-full h-full object-cover rounded-full" />
               </motion.div>
             )}
           </AnimatePresence>
           {/* Unread badge */}
           {hasUnread && !isOpen && (
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-[#050505] flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-[#050505] flex items-center justify-center z-10">
               <span className="text-[8px] text-white font-bold">1</span>
             </span>
           )}
@@ -349,7 +370,7 @@ export function ChatBot({ lang }: ChatBotProps) {
             <div className="bg-gradient-to-r from-[#111111] to-[#1a1a1a] border-b border-[#2a2a2a] px-4 py-3 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-[#C28D35] to-[#8A6020] flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-5 h-5 text-white" />
+                  <img src="/images/agent-avatar.png" alt="Suporte" className="w-full h-full object-cover rounded-full" />
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-[#111111]" />
                 </div>
                 <div>
@@ -374,7 +395,7 @@ export function ChatBot({ lang }: ChatBotProps) {
                 >
                   {msg.from === "bot" && (
                     <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#C28D35] to-[#8A6020] flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
-                      <Bot className="w-3.5 h-3.5 text-white" />
+                      <img src="/images/agent-avatar.png" alt="Suporte" className="w-full h-full object-cover rounded-full" />
                     </div>
                   )}
                   <div
@@ -393,7 +414,7 @@ export function ChatBot({ lang }: ChatBotProps) {
               {isTyping && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start items-center gap-2">
                   <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#C28D35] to-[#8A6020] flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-3.5 h-3.5 text-white" />
+                    <img src="/images/agent-avatar.png" alt="Suporte" className="w-full h-full object-cover rounded-full" />
                   </div>
                   <div className="bg-[#181818] border border-[#282828] rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1.5 items-center">
                     {[0, 1, 2].map((i) => (

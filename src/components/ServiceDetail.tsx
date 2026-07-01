@@ -37,6 +37,90 @@ const mapIdToKey = (id: string | number): "residencias" | "condominios" | "empre
   return map[id] || "residencias";
 };
 
+// Mapeamento de imagens para produtos relacionados (Unsplash Premium)
+const PRODUCT_IMAGES: Record<string, string> = {
+  // CCTV
+  "câmaras ip": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80",
+  "câmaras analógicas hd": "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=600&q=80",
+  "gravadores nvr": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+  "gravadores dvr": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+  "monitores de videovigilância": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80",
+  "discos rígidos para videovigilância": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
+  "cabos de vídeo e conectores": "https://images.unsplash.com/photo-1601524909162-be87252be298?auto=format&fit=crop&w=600&q=80",
+  "fontes de alimentação centralizadas": "https://images.unsplash.com/photo-1590486803833-ffc6de08d6f9?auto=format&fit=crop&w=600&q=80",
+  "baluns de vídeo": "https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=600&q=80",
+  "software de monitorização vms": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+
+  // INTRUSÃO / ALARMES
+  "central de alarme": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80",
+  "sensores de movimento": "https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=600&q=80",
+  "contatos magnéticos": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+  "sirenes": "https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80",
+  "teclados de alarme": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=600&q=80",
+  "comandos": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
+  "módulos gsm ou wi-fi": "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=600&q=80",
+  "detectores internos e externos": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+
+  // CONTROLO DE ACESSO
+  "leitores de cartão": "https://images.unsplash.com/photo-1563013544-824ae1d704d3?auto=format&fit=crop&w=600&q=80",
+  "tags": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+  "teclados numéricos": "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=600&q=80",
+  "biometria": "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=600&q=80",
+  "reconhecimento facial": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
+  "fechaduras elétricas": "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=600&q=80",
+  "botões de acesso": "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80",
+  "controladores de acesso": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+  "torniquetes": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80",
+  "software de gestão de utilizadores": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+
+  // DETEÇÃO DE INCÊNDIO
+  "centrais de incêndio": "https://images.unsplash.com/photo-1599740831146-809829130b9d?auto=format&fit=crop&w=600&q=80",
+  "detetores de fumo": "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80",
+  "detetores térmicos": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80",
+  "botões manuais de alarme": "https://images.unsplash.com/photo-1606206591513-adbfdd5a1c71?auto=format&fit=crop&w=600&q=80",
+  "sinalizadores": "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?auto=format&fit=crop&w=600&q=80",
+  "módulos de comando e isolamento": "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=600&q=80",
+  "sistemas de retenção eletromagnética": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+  "cabos resistentes ao fogo": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80",
+  "software de monitorização gráfica": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
+
+  // AUTOMATISMOS
+  "motores para portões de correr": "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?auto=format&fit=crop&w=600&q=80",
+  "motores para portões de batente": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80",
+  "barreiras automáticas": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+  "fotocélulas de segurança": "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=600&q=80",
+  "pirilampos de sinalização": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=600&q=80",
+  "receptores e emissores": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80",
+  "cremalheiras": "https://images.unsplash.com/photo-1530124560676-b00131ffc297?auto=format&fit=crop&w=600&q=80",
+  "quadros de comando eletrónicos": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80",
+
+  // PORTAS E PORTÕES
+  "portões seccionados residenciais": "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?auto=format&fit=crop&w=600&q=80",
+  "portões seccionados industriais": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
+  "portas rápidas em pvc": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80",
+  "portas corta-fogo": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
+  "portas multiusos metálicas": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+  "portões de fole": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80",
+  "grades de enrolar de segurança": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80",
+
+  // UPS E ENERGIA
+  "ups line-interactive": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
+  "ups online dupla conversão": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+  "baterias de chumbo-ácido reguladas": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?auto=format&fit=crop&w=600&q=80",
+  "baterias de lítio para ups": "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80",
+  "repartidores de carga": "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=80",
+  "software de encerramento seguro": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+
+  // REDES E COMUNICAÇÕES
+  "routers gateway": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+  "switches managed": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+  "pontos de acesso wi-fi": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80",
+  "cabos ethernet cat6 ou cat6a": "https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?auto=format&fit=crop&w=600&q=80",
+  "fibra ótica": "https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?auto=format&fit=crop&w=600&q=80",
+  "racks murais e de chão": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+  "painéis de distribuição": "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=80"
+};
+
 export function ServiceDetail({ slug, onNavigate, services, pages, lang = "pt" }: ServiceDetailProps) {
   const t = TRANSLATIONS[lang];
 
@@ -350,14 +434,23 @@ export function ServiceDetail({ slug, onNavigate, services, pages, lang = "pt" }
             {products.map((prod: any, idx: number) => {
               const cleanProdKey = prod.toLowerCase().trim();
               const productTrans = t.productsDict[cleanProdKey];
+              const bgImg = PRODUCT_IMAGES[cleanProdKey] || "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80";
               
               if (productTrans) {
                 return (
                   <div
                     key={idx}
-                    className="card-luxury p-6 rounded-xl group relative overflow-hidden flex flex-col justify-between border border-[#222] hover:border-[#E2AF55]/40 transition-all duration-300"
+                    className="card-luxury p-6 rounded-xl group relative overflow-hidden flex flex-col justify-between border border-[#222] hover:border-[#E2AF55]/40 transition-all duration-300 min-h-[220px]"
                   >
-                    <div>
+                    {/* Background image related to the product */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center opacity-[0.06] group-hover:opacity-[0.18] transition-opacity duration-500 pointer-events-none filter brightness-75 contrast-125"
+                      style={{ backgroundImage: `url(${bgImg})` }}
+                    />
+                    {/* Subtle bottom gradient to ensure text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent pointer-events-none" />
+
+                    <div className="relative z-10">
                       <h3 className="font-display font-bold text-sm text-white tracking-wide mb-2 group-hover:text-[#E2AF55] transition-colors leading-tight">
                         {productTrans.title}
                       </h3>
@@ -365,7 +458,7 @@ export function ServiceDetail({ slug, onNavigate, services, pages, lang = "pt" }
                         {productTrans.description}
                       </p>
                     </div>
-                    <div className="mt-auto border-t border-[#222] pt-3 text-[10px] text-gray-500 group-hover:text-gray-400 transition-colors font-mono">
+                    <div className="mt-auto border-t border-[#222] pt-3 text-[10px] text-gray-500 group-hover:text-gray-400 transition-colors font-mono relative z-10">
                       <strong className="text-[#E2AF55] font-semibold uppercase text-[9px] block mb-1">
                         {lang === "pt" ? "Benefício" : lang === "en" ? "Benefit" : "Avantage"}:
                       </strong>
@@ -379,9 +472,13 @@ export function ServiceDetail({ slug, onNavigate, services, pages, lang = "pt" }
               return (
                 <div
                   key={idx}
-                  className="card-luxury p-5 rounded-xl group flex flex-col items-center justify-center text-center min-h-[90px] border border-[#222]"
+                  className="card-luxury p-5 rounded-xl group flex flex-col items-center justify-center text-center min-h-[90px] border border-[#222] relative overflow-hidden"
                 >
-                  <span className="text-xs text-[#D9D9D9] font-sans font-medium capitalize group-hover:text-white transition-colors">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center opacity-[0.04] pointer-events-none"
+                    style={{ backgroundImage: `url(${bgImg})` }}
+                  />
+                  <span className="text-xs text-[#D9D9D9] font-sans font-medium capitalize group-hover:text-white transition-colors relative z-10">
                     {prod}
                   </span>
                 </div>
@@ -390,6 +487,7 @@ export function ServiceDetail({ slug, onNavigate, services, pages, lang = "pt" }
           </div>
         </div>
       </section>
+
 
       {/* 4b. GALERIA VISUAL DO SERVIÇO */}
       {galleryImages && galleryImages.length > 0 && (

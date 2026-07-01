@@ -1,6 +1,36 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Globe, ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
+
+// Inline Flag SVGs to render correctly on all OS (including Windows)
+const FlagPT = () => (
+  <svg viewBox="0 0 600 400" className="w-5 h-3.5 rounded-sm object-cover shadow-sm flex-shrink-0">
+    <rect width="240" height="400" fill="#006600" />
+    <rect x="240" width="360" height="400" fill="#FF0000" />
+    {/* Coat of arms simplified */}
+    <circle cx="240" cy="200" r="60" fill="#FFCC00" />
+    <path d="M 240,160 C 218,160 210,180 210,200 C 210,220 218,240 240,240 C 262,240 270,220 270,200 C 270,180 262,160 240,160 Z" fill="#ffffff" stroke="#ff0000" strokeWidth="8" />
+    <rect x="225" y="180" width="30" height="40" fill="#002266" />
+  </svg>
+);
+
+const FlagGB = () => (
+  <svg viewBox="0 0 60 30" className="w-5 h-3.5 rounded-sm object-cover shadow-sm flex-shrink-0">
+    <rect width="60" height="30" fill="#012169" />
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#c8102e" strokeWidth="3.5" />
+    <path d="M30,0 L30,30 M0,15 L60,15" stroke="#fff" strokeWidth="10" />
+    <path d="M30,0 L30,30 M0,15 L60,15" stroke="#c8102e" strokeWidth="6" />
+  </svg>
+);
+
+const FlagFR = () => (
+  <svg viewBox="0 0 3 2" className="w-5 h-3.5 rounded-sm object-cover shadow-sm flex-shrink-0">
+    <rect width="1" height="2" fill="#00209F" />
+    <rect x="1" width="1" height="2" fill="#FFFFFF" />
+    <rect x="2" width="1" height="2" fill="#F6424D" />
+  </svg>
+);
 
 interface LanguageSelectorProps {
   currentLang: "pt" | "en" | "fr";
@@ -12,9 +42,9 @@ export function LanguageSelector({ currentLang, onLangChange }: LanguageSelector
   const containerRef = useRef<HTMLDivElement>(null);
 
   const languages = [
-    { code: "pt", flag: "🇵🇹", label: "Português PT" },
-    { code: "en", flag: "🇬🇧", label: "English" },
-    { code: "fr", flag: "🇫🇷", label: "Français" }
+    { code: "pt", flag: <FlagPT />, label: "Português" },
+    { code: "en", flag: <FlagGB />, label: "English" },
+    { code: "fr", flag: <FlagFR />, label: "Français" }
   ] as const;
 
   // Close dropdown on click outside
@@ -36,12 +66,9 @@ export function LanguageSelector({ currentLang, onLangChange }: LanguageSelector
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Alterar Idioma / Change Language"
-          className="flex items-center gap-2 px-3 py-3 rounded-full bg-[#111111]/90 border border-white/10 hover:border-[#E2AF55] text-white hover:text-[#E2AF55] shadow-lg shadow-black/60 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
+          className="flex items-center gap-2 px-3 py-2.5 rounded-full bg-[#111111]/90 border border-white/10 hover:border-[#E2AF55] text-white hover:text-[#E2AF55] shadow-lg shadow-black/60 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
         >
-          <span className="text-base leading-none">{activeLang.flag}</span>
-          <span className="text-[10px] font-mono tracking-wider font-bold uppercase hidden sm:inline-block">
-            {activeLang.code}
-          </span>
+          {activeLang.flag}
           <ChevronUp className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
@@ -67,7 +94,7 @@ export function LanguageSelector({ currentLang, onLangChange }: LanguageSelector
                       : "text-gray-300 hover:bg-white/5 hover:text-white"
                   }`}
                 >
-                  <span className="text-base leading-none">{lang.flag}</span>
+                  {lang.flag}
                   <span>{lang.label}</span>
                 </button>
               ))}
