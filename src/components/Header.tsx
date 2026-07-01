@@ -32,7 +32,6 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo, lang = "pt
   const navLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.solutions, href: "#solucoes" },
-    { name: t.nav.equipments, href: "#equipamentos" },
     { name: t.nav.projects, href: "#projetos" },
     { name: t.nav.contact, href: "#contacto" },
   ];
@@ -40,7 +39,6 @@ export function Header({ onQuoteClick, onNavigate, currentPath, logo, lang = "pt
   const mobileNavLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.solutions, href: "#solucoes" },
-    { name: t.nav.equipments, href: "#equipamentos" },
     { name: t.nav.projects, href: "#projetos" },
     { name: t.nav.contact, href: "#contacto" },
   ];

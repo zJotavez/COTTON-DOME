@@ -14,7 +14,6 @@ import { Footer } from "./components/Footer";
 import { ServiceDetail } from "./components/ServiceDetail";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { LanguageSelector } from "./components/LanguageSelector";
-import { Equipments } from "./components/Equipments";
 import { ChatBot } from "./components/ChatBot";
 import { TRANSLATIONS } from "./translations";
 import { CONTACT_INFO } from "./data";
@@ -286,9 +285,6 @@ export default function App() {
             services={dbData?.services}
             lang={language}
           />
-
-          {/* Equipments Section */}
-          <Equipments lang={language} />
 
           {/* Bento Grid: Environments Served */}
           <Environments lang={language} />
