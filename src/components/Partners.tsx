@@ -247,8 +247,8 @@ export function Partners({ lang = "pt" }: PartnersProps) {
           </motion.p>
         </div>
 
-        {/* Quality Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Quality Cards Grid (Desktop only) */}
+        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {activeCards.map((card, idx) => {
             const Icon = card.icon;
 
@@ -301,6 +301,60 @@ export function Partners({ lang = "pt" }: PartnersProps) {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Mobile Quality Cards Carousel (Marquee, mobile only) */}
+        <div className="lg:hidden overflow-hidden relative py-4 w-full select-none">
+          <div className="animate-marquee-ltr flex gap-4 whitespace-nowrap min-w-full">
+            {[...activeCards, ...activeCards].map((card, idx) => {
+              const Icon = card.icon;
+
+              return (
+                <div
+                  key={`${card.id}-mobile-${idx}`}
+                  className="inline-block card-luxury rounded-xl p-5 w-[280px] shrink-0 whitespace-normal relative group"
+                >
+                  <div>
+                    {/* Card Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2.5 rounded bg-[#1A1A1A] text-[#C28D35] border border-white/5 group-hover:border-[#E2AF55]/30 group-hover:text-[#E2AF55] transition-all duration-300">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="font-display font-bold text-sm text-white group-hover:text-[#E2AF55] transition-colors duration-300">
+                        {card.title}
+                      </h3>
+                    </div>
+
+                    {/* Card Description */}
+                    <p className="text-[11px] text-[#D9D9D9] font-sans leading-relaxed mb-4 h-[64px] line-clamp-3">
+                      {card.description}
+                    </p>
+
+                    {/* Focus List */}
+                    <div className="border-t border-[#222222] pt-3 mb-4">
+                      <span className="block font-display text-[9px] uppercase tracking-wider text-gray-500 font-bold mb-2">
+                        {content.focusTag}
+                      </span>
+                      <div className="space-y-1.5">
+                        {card.focusPoints.map((item, itemIdx) => (
+                          <div key={itemIdx} className="flex items-center gap-2">
+                            <div className="w-1 h-1 rounded-full bg-[#E2AF55]"></div>
+                            <span className="text-[10px] text-[#D9D9D9] font-sans truncate">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status footer inside card */}
+                  <div className="flex items-center gap-1.5 text-[9px] text-gray-400 bg-black/45 px-2.5 py-1.5 rounded border border-white/5 font-mono mt-auto">
+                    <Check className="w-3.5 h-3.5 text-[#E2AF55]" />
+                    <span className="truncate">{card.footerText}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Trust disclaimer */}

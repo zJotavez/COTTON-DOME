@@ -243,7 +243,7 @@ export const PROJECTS: ProjectItem[] = [
     category: "cctv",
     categoryLabel: "Videovigilância",
     description: "Instalação de câmaras IP 4K com análise de vídeo e deteção inteligente de pessoas à volta de moradia premium.",
-    image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80"
+    image: "images/cctv-1.png?v=2"
   },
   {
     id: "p2",
@@ -251,7 +251,7 @@ export const PROJECTS: ProjectItem[] = [
     category: "automatismos",
     categoryLabel: "Automatismos",
     description: "Instalação de portão seccionado térmico com motorização Motorline rápida e comandos em código evolutivo.",
-    image: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?auto=format&fit=crop&w=600&q=80"
+    image: "images/automatismos-1.png?v=2"
   },
   {
     id: "p3",
@@ -259,7 +259,7 @@ export const PROJECTS: ProjectItem[] = [
     category: "acessos",
     categoryLabel: "Controlo de Acessos",
     description: "Implementação de controlo de acessos com reconhecimento facial e leitores RFID para escritórios corporativos.",
-    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=600&q=80"
+    image: "images/controlo-acessos-1.png?v=2"
   },
   {
     id: "p4",
@@ -267,7 +267,7 @@ export const PROJECTS: ProjectItem[] = [
     category: "redes",
     categoryLabel: "Redes Técnicas",
     description: "Instalação e certificação de cabeamento de rede estruturada, rack organizado e UPS de backup para segurança estável.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+    image: "images/ups-3.png?v=2"
   },
   {
     id: "p5",
@@ -275,7 +275,7 @@ export const PROJECTS: ProjectItem[] = [
     category: "incendio",
     categoryLabel: "Deteção de Incêndio",
     description: "Sistema de centrais analógicas e detetores de fumo endereçáveis com isolador incorporado em pavilhão industrial.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80"
+    image: "images/deteccao-incendio-1.png?v=2"
   },
   {
     id: "p6",
@@ -283,6 +283,6 @@ export const PROJECTS: ProjectItem[] = [
     category: "intrusao",
     categoryLabel: "Sistemas de Alarme",
     description: "Sensores de exterior contra falsas leituras combinados com sirenes dissuasoras inteligentes conectadas por app.",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80"
+    image: "images/alarme-intrusao-1.png?v=2"
   }
 ];
