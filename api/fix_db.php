@@ -13,11 +13,29 @@ try {
     $stmt1->execute();
     echo "<p>[OK] E-mail atualizado na tabela site_settings.</p>";
 
-    // Update main service images to premium assets
-    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=1200&q=80' WHERE id = 1");
-    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80' WHERE id = 2");
-    $pdo->query("UPDATE services SET image = 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=1200&q=80' WHERE id = 3");
-    echo "<p>[OK] Imagens dos serviços principais CCTV, Alarmes e Controlo de Acessos atualizadas.</p>";
+    // Update main service images and descriptions in DB to professional assets
+    // CCTV
+    $pdo->query("UPDATE services SET 
+        image = 'images/cctv-hero.png',
+        slogan = 'Vigilância inteligente 24/7 com câmeras de alta definição e IA para proteger o que mais importa.',
+        short_description = 'Câmeras IP e analógicas HD com inteligência artificial, gravação contínua e monitorização remota em tempo real via app.'
+    WHERE id = 1 OR slug = 'cctv-videovigilancia'");
+    
+    // Alarmes
+    $pdo->query("UPDATE services SET 
+        image = 'images/alarme-hero.png',
+        slogan = 'Proteção inteligente contra invasões com alertas instantâneos e resposta imediata no seu telemóvel.',
+        short_description = 'Centrais de alarme conectadas, sensores de movimento avançados, sirenes de alto impacto e proteção perimetral 24/7.'
+    WHERE id = 2 OR slug = 'intrusao-sistemas-alarme'");
+    
+    // Controlo de Acesso
+    $pdo->query("UPDATE services SET 
+        image = 'images/controlo-acessos-hero.png',
+        slogan = 'Segurança máxima em cada entrada: apenas pessoas autorizadas acedem ao seu espaço.',
+        short_description = 'Biometria, reconhecimento facial, RFID e fechaduras eletrónicas para controlo total de acessos em empresas e condomínios.'
+    WHERE id = 3 OR slug = 'controlo-de-acessos'");
+    
+    echo "<p>[OK] Imagens e textos dos serviços principais CCTV, Alarmes e Controlo de Acessos atualizados na BD.</p>";
 
     // 2. Check if gallery_images column exists in service_pages, if not add it
     $q = $pdo->query("SHOW COLUMNS FROM service_pages LIKE 'gallery_images'");
