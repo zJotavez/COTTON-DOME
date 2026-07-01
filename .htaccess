@@ -1,7 +1,7 @@
 # Cotton Dome LDA - Apache Configuration (.htaccess)
 
-# Set default page to index.php
-DirectoryIndex index.php index.html
+# Set default page to index.html
+DirectoryIndex index.html
 
 # ----------------------------------------------------------------------
 # 1. URL Rewriting for Single Page Application (React Router)
@@ -10,18 +10,18 @@ DirectoryIndex index.php index.html
   RewriteEngine On
   RewriteBase /
 
-  # Redirect HTTP to HTTPS (optional - uncomment on Hostinger if SSL is enabled)
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Redirect HTTP to HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Direct all administrative /api/ calls directly to the file if exists
-  # Otherwise if it is a request for a real file/directory, serve it directly
+  # If the requested resource exists as a file or directory, serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Rewrite all other paths (e.g., /, /servicos/*, /admin) to index.php
-  RewriteRule ^ index.php [L]
+  # For everything else (including /admin, /servicos/*), serve index.html
+  # This allows React Router to handle the routing client-side
+  RewriteRule ^ index.html [L]
 </IfModule>
 
 # ----------------------------------------------------------------------
