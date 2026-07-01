@@ -33,7 +33,7 @@ interface AdminDashboardProps {
 export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
   // Authentication State
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null); // null means checking
-  const [usernameInput, setUsernameInput] = useState("");
+  const [usernameInput, setUsernameInput] = useState("suporte@domme.pt");
   const [passwordInput, setPasswordInput] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
@@ -445,7 +445,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
             <div className="inline-flex p-3.5 bg-black border border-[#C28D35]/30 rounded-full text-[#C28D35] mb-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
               <Lock className="w-6 h-6" />
             </div>
-            <h2 className="font-display text-2xl font-bold uppercase tracking-wider text-white">COTTON DOME</h2>
+            <h2 className="font-display text-2xl font-bold uppercase tracking-wider text-white notranslate" translate="no">Cotton Dome</h2>
             <p className="text-xs font-mono uppercase tracking-widest text-[#C28D35] mt-1">Painel Administrativo</p>
           </div>
 
@@ -464,7 +464,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
                 className="w-full bg-black border border-gray-800 focus:border-[#C28D35] focus:outline-none px-4 py-3 rounded text-sm text-white font-mono transition duration-300"
-                placeholder="admin@domme.pt"
+                placeholder="suporte@domme.pt"
                 required
               />
             </div>
@@ -571,7 +571,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
         {/* Sidebar Header */}
         <div className="p-6 border-b border-gray-900 hidden lg:flex items-center justify-between">
           <div>
-            <h1 className="font-display font-extrabold text-white text-base tracking-widest">COTTON DOME</h1>
+            <h1 className="font-display font-extrabold text-white text-base tracking-widest notranslate" translate="no">Cotton Dome</h1>
             <p className="text-[10px] font-mono tracking-widest text-[#C28D35] uppercase mt-0.5">Truth Engine Admin</p>
           </div>
           <button 
