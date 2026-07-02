@@ -13,11 +13,24 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// CORS para o React
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
+// Configuração robusta de CORS para suportar Cookies de Sessão (credentials: include)
+$allowedOrigin = 'https://domme.pt';
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    $origin = $_SERVER['HTTP_ORIGIN'];
+    // Permitir domme.pt, localhost (para desenvolvimento) ou subdomínios
+    if (strpos($origin, 'domme.pt') !== false || strpos($origin, 'localhost') !== false) {
+        $allowedOrigin = $origin;
+    }
+}
+header("Access-Control-Allow-Origin: $allowedOrigin");
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 // Pasta onde os dados JSON são guardados
 define('DATA_DIR', __DIR__ . '/data/');
